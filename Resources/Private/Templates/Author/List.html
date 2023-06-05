@@ -1,0 +1,24 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:layout name="Default"/>
+
+<f:section name="Main">
+    <f:if condition="{authors -> f:count()} >= 1">
+        <f:if condition="{settings.showSearchForm}">
+            <form>
+                <label>Suche</label>
+                <input name="tx_cpsauthor_list[search]" value="" placeholder="suche">
+            </form>
+        </f:if>
+
+        <ul class="c-content-list__list">
+            <f:for each="{authors}" as="author">
+                <li class="c-content-list__item">
+                    <f:render partial="Author/List/Item" section="Main" arguments="{author:author}"/>
+                </li>
+            </f:for>
+        </ul>
+    </f:if>
+</f:section>
+
+</html>

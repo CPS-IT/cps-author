@@ -1,0 +1,31 @@
+#----------------------------------------------
+##  Author records only
+mod {
+	web_list {
+		allowedNewTables = tx_cpsauthor_domain_model_author
+		table.tt_content.hideTable = 1
+	}
+}
+
+#----------------------------------------------
+##  config for tx_cpsauthor_domain_model_author
+TCEFORM.tx_cpsauthor_domain_model_author {
+	type {
+		removeItems := addToList(2,3)
+		disableNoMatchingValueElement = 1
+	}
+}
+
+#----------------------------------------------
+##  config for tx_cpsauthor_domain_model_author
+TCAdefaults {
+	tx_cpsauthor_domain_model_author {
+		type = 1
+	}
+}
+
+#----------------------------------------------
+## Clear cache for all pages tagged with tag "Author"
+TCEMAIN {
+	clearCacheCmd = cacheTag:Author
+}

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-12-15T02:43:00Z"
+          product-name="cps_author">
+        <header/>
+        <body>
+            <trans-unit id="tx_cpsauthor_domain_model_author.title">
+                <source>Author</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="author.type">
+                <source>Author type</source>
+                <target>Autorentyp</target>
+            </trans-unit>
+            <trans-unit id="author.type.I.1" approved="yes">
+                <source>Author</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="author.type.I.2" approved="yes">
+                <source>Network partner</source>
+                <target>Netzwerkpartner</target>
+            </trans-unit>
+            <trans-unit id="author.type.I.3" approved="yes">
+                <source>Contact</source>
+                <target>Kontakt</target>
+            </trans-unit>
+            <trans-unit id="author.gender" approved="yes">
+                <source>Gender</source>
+                <target>Geschlecht:</target>
+            </trans-unit>
+            <trans-unit id="author.gender.m" approved="yes">
+                <source>Male (Mr)</source>
+                <target>Männlich (Herr)</target>
+            </trans-unit>
+            <trans-unit id="author.gender.f" approved="yes">
+                <source>Female (Mrs)</source>
+                <target>Weiblich (Frau)</target>
+            </trans-unit>
+            <trans-unit id="author.gender.v" approved="yes">
+                <source>Divers</source>
+                <target>Divers</target>
+            </trans-unit>
+            <trans-unit id="author.gender.undefined" approved="yes">
+                <source>Undefined</source>
+                <target>Nicht definiert</target>
+            </trans-unit>
+            <trans-unit id="author.first_name">
+                <source>First Name</source>
+                <target>Vorname:</target>
+            </trans-unit>
+            <trans-unit id="author.middle_name">
+                <source>Middle Name</source>
+                <target>Zweiter Vorname:</target>
+            </trans-unit>
+            <trans-unit id="author.last_name">
+                <source>Last Name</source>
+                <target>Nachname:</target>
+            </trans-unit>
+            <trans-unit id="author.mobile">
+                <source>Mobile</source>
+                <target>Mobil:</target>
+            </trans-unit>
+            <trans-unit id="author.skype">
+                <source>Skype</source>
+                <target>Skype</target>
+            </trans-unit>
+            <trans-unit id="author.twitter">
+                <source>Twitter</source>
+                <target>Twitter</target>
+            </trans-unit>
+            <trans-unit id="author.facebook">
+                <source>Facebook</source>
+                <target>Facebook</target>
+            </trans-unit>
+            <trans-unit id="author.linkedin">
+                <source>LinkedIn</source>
+                <target>LinkedIn</target>
+            </trans-unit>
+            <trans-unit id="author.instagram">
+                <source>Instagram</source>
+                <target>Instagram</target>
+            </trans-unit>
+            <trans-unit id="author.company">
+                <source>Organization</source>
+                <target>Organisation:</target>
+            </trans-unit>
+            <trans-unit id="author.position">
+                <source>Position</source>
+                <target>Position</target>
+            </trans-unit>
+            <trans-unit id="author.no_profile">
+                <source>Disable profile</source>
+                <target>Profil deaktivieren</target>
+            </trans-unit>
+            <trans-unit id="author_palette.organization">
+                <source>Organisation</source>
+                <target>Organisation</target>
+            </trans-unit>
+            <trans-unit id="author_palette.name">
+                <source>Name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="author_palette.contact">
+                <source>Contact</source>
+                <target>Kontakt</target>
+            </trans-unit>
+            <trans-unit id="author_palette.social">
+                <source>Social Networks</source>
+                <target>Soziale Netzwerke</target>
+            </trans-unit>
+            <trans-unit id="tab.general">
+                <source>General</source>
+                <target>Allgemein</target>
+            </trans-unit>
+            <trans-unit id="tab.social">
+                <source>Social Networks</source>
+                <target>Soziale Netzwerke</target>
+            </trans-unit>
+            <trans-unit id="tab.contact">
+                <source>Contact</source>
+                <target>Kontakt</target>
+            </trans-unit>
+            <trans-unit id="tab.language">
+                <source>Language</source>
+                <target>Sprache</target>
+            </trans-unit>
+            <trans-unit id="tab.access">
+                <source>Access</source>
+                <target>Zugriff</target>
+            </trans-unit>
+            <trans-unit id="author.location">
+                <source>Location</source>
+                <target>Ort</target>
+            </trans-unit>
+            <trans-unit id="author.institution_type">
+                <source>Institution type</source>
+                <target>Art der Institution</target>
+            </trans-unit>
+            <trans-unit id="author.content_elements">
+                <source>Content element</source>
+                <target>Inhaltselement</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

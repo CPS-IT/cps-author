@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <tx_cpsauthor_domain_model_author>
+        <uid>1</uid>
+        <pid>1</pid>
+        <type>1</type>
+        <first_name>Max</first_name>
+        <middle_name>Muster</middle_name>
+        <last_name>Man</last_name>
+        <email>max@email.com</email>
+        <phone>+16723548591</phone>
+        <fax>+16723548591</fax>
+        <mobile>+16723548591</mobile>
+        <www>https://www.max-company.com</www>
+        <company>Max Company</company>
+        <position>Max position</position>
+        <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
+        <skype>https://www.max-skype.com</skype>
+        <twitter>https://www.max-twitter.com</twitter>
+        <facebook>https://www.max-facebook.com</facebook>
+        <linkedin>https://www.max-linkedin.com</linkedin>
+    </tx_cpsauthor_domain_model_author>
+    <tx_cpsauthor_domain_model_author>
+        <uid>2</uid>
+        <pid>3</pid>
+        <type>2</type>
+        <first_name>Max</first_name>
+        <middle_name>Muster</middle_name>
+        <last_name>Man</last_name>
+        <email>max@email.com</email>
+        <phone>+16723548591</phone>
+        <fax>+16723548591</fax>
+        <mobile>+16723548591</mobile>
+        <www>https://www.max-company.com</www>
+        <company>Max Company</company>
+        <position>Max position</position>
+        <description>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</description>
+        <skype>https://www.max-skype.com</skype>
+        <twitter>https://www.max-twitter.com</twitter>
+        <facebook>https://www.max-facebook.com</facebook>
+        <linkedin>https://www.max-linkedin.com</linkedin>
+    </tx_cpsauthor_domain_model_author>
+</dataset>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-12-15T02:43:00Z"
+          product-name="cps_author">
+        <header/>
+        <body>
+            <trans-unit id="author.type">
+                <source>Author type</source>
+                <target>Autorentyp</target>
+            </trans-unit>
+            <trans-unit id="author.type.I.1">
+                <source>Author</source>
+                <target>Autor</target>
+            </trans-unit>
+            <trans-unit id="author.type.I.2">
+                <source>Network partner</source>
+                <target>Netzwerkpartner</target>
+            </trans-unit>
+            <trans-unit id="author.gender">
+                <source>Gender</source>
+                <target>Geschlecht:</target>
+            </trans-unit>
+            <trans-unit id="author.gender.m">
+                <source>Mr.</source>
+                <target>Herr</target>
+            </trans-unit>
+            <trans-unit id="author.gender.f">
+                <source>Mrs.</source>
+                <target>Frau</target>
+            </trans-unit>
+            <trans-unit id="author.gender.v">
+                <source>Divers</source>
+                <target>Divers</target>
+            </trans-unit>
+            <trans-unit id="author.gender.undefined">
+                <source></source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="author.first_name">
+                <source>First Name</source>
+                <target>Vorname:</target>
+            </trans-unit>
+            <trans-unit id="author.middle_name">
+                <source>Middle Name</source>
+                <target>Zweiter Vorname:</target>
+            </trans-unit>
+            <trans-unit id="author.last_name">
+                <source>Last Name</source>
+                <target>Nachname:</target>
+            </trans-unit>
+            <trans-unit id="author.mobile">
+                <source>Mobile</source>
+                <target>Mobil:</target>
+            </trans-unit>
+            <trans-unit id="author.skype">
+                <source>Skype</source>
+                <target>Skype</target>
+            </trans-unit>
+            <trans-unit id="author.twitter">
+                <source>Twitter</source>
+                <target>Twitter</target>
+            </trans-unit>
+            <trans-unit id="author.facebook">
+                <source>Facebook</source>
+                <target>Facebook</target>
+            </trans-unit>
+            <trans-unit id="author.linkedin">
+                <source>LinkedIn</source>
+                <target>LinkedIn</target>
+            </trans-unit>
+            <trans-unit id="author.instagram">
+                <source>Instagram</source>
+                <target>Instagram</target>
+            </trans-unit>
+            <trans-unit id="author.company">
+                <source>Organization</source>
+                <target>Organisation:</target>
+            </trans-unit>
+            <trans-unit id="author.position">
+                <source>Position</source>
+                <target>Position</target>
+            </trans-unit>
+            <trans-unit id="author_palette.organization">
+                <source>Organisation</source>
+                <target>Organisation</target>
+            </trans-unit>
+            <trans-unit id="author_palette.name">
+                <source>Name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="author_palette.contact">
+                <source>Contact</source>
+                <target>Kontakt</target>
+            </trans-unit>
+            <trans-unit id="author_palette.social">
+                <source>Social Networks</source>
+                <target>Soziale Netzwerke</target>
+            </trans-unit>
+            <trans-unit id="tab.general">
+                <source>General</source>
+                <target>Allgemein</target>
+            </trans-unit>
+            <trans-unit id="tab.social">
+                <source>Social Networks</source>
+                <target>Soziale Netzwerke</target>
+            </trans-unit>
+            <trans-unit id="tab.contact">
+                <source>Contact</source>
+                <target>Kontakt</target>
+            </trans-unit>
+            <trans-unit id="tab.language">
+                <source>Language</source>
+                <target>Sprache</target>
+            </trans-unit>
+            <trans-unit id="tab.access">
+                <source>Access</source>
+                <target>Zugriff</target>
+            </trans-unit>
+            <trans-unit id="locationEnum.0">
+                <target>keiner</target>
+                <source>none</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.1">
+                <target>Baden-Württemberg</target>
+                <source>Baden-Wuerttemberg</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.2">
+                <target>Bayern</target>
+                <source>Bayern</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.3">
+                <target>Berlin</target>
+                <source>Berlin</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.4">
+                <target>Brandenburg</target>
+                <source>Brandenburg</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.5">
+                <target>Bremen</target>
+                <source>Bremen</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.6">
+                <target>Hamburg</target>
+                <source>Hamburg</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.7">
+                <target>Hessen</target>
+                <source>Hessen</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.8">
+                <target>Mecklenburg-Vorpommern</target>
+                <source>Mecklenburg-Western Pomerania</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.9">
+                <target>Niedersachsen</target>
+                <source>Niedersachsen</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.10">
+                <target>Nordrhein-Westfalen</target>
+                <source>Nordrhein-Westfalen</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.11">
+                <target>Rheinland-Pfalz</target>
+                <source>Rheinland-Pfalz</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.12">
+                <target>Saarland</target>
+                <source>Saarland</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.13">
+                <target>Sachsen</target>
+                <source>Sachsen</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.14">
+                <target>Sachsen-Anhalt</target>
+                <source>Sachsen-Anhalt</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.15">
+                <target>Schleswig-Holstein</target>
+                <source>Schleswig Holstein</source>
+            </trans-unit>
+            <trans-unit id="locationEnum.16">
+                <target>Thüringen</target>
+                <source>Thueringen</source>
+            </trans-unit>
+            <trans-unit id="institutionTypeEnum.0">
+                <target>keiner</target>
+                <source>none</source>
+            </trans-unit>
+            <trans-unit id="institutionTypeEnum.1">
+                <target>Energieagenturen</target>
+                <source>Energy agencies</source>
+            </trans-unit>
+            <trans-unit id="institutionTypeEnum.2">
+                <target>Wissenschaft / Institute / Hochschulen</target>
+                <source>Science / Institutes / Universities</source>
+            </trans-unit>
+            <trans-unit id="institutionTypeEnum.3">
+                <target>Weiterbildungsinstitute</target>
+                <source>Training institutions</source>
+            </trans-unit>
+            <trans-unit id="institutionTypeEnum.4">
+                <target>Öffentliche Einrichtungen / Ministerien</target>
+                <source>Public institutions / ministries</source>
+            </trans-unit>
+            <trans-unit id="institutionTypeEnum.5">
+                <target>Verbände/Vereine und Kammern</target>
+                <source>Associations/clubs and chambers</source>
+            </trans-unit>
+            <trans-unit id="institutionTypeEnum.6">
+                <target>Sonstige</target>
+                <source>Other</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

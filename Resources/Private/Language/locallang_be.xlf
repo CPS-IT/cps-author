@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" date="2020-01-15T14:21:32Z" product-name="cps_author">
+        <header/>
+        <body>
+            <trans-unit id="plugin.author.title">
+                <source>Author</source>
+            </trans-unit>
+            <trans-unit id="plugin.author.list.title">
+                <source>Author list</source>
+            </trans-unit>
+            <trans-unit id="plugin.author.list.description">
+                <source>Displays a list of Author records in Frontend.</source>
+                <target>Zeigt eine Liste von Autoren im Frontend an.</target>
+            </trans-unit>
+            <trans-unit id="plugin.author.app.title">
+                <source>Author list App</source>
+                <target>Autoren-Datensätzen Listenansicht App</target>
+            </trans-unit>
+            <trans-unit id="plugin.author.app.description">
+                <source>Front end application to display a list of Author records.</source>
+                <target>Front-End-Anwendung zum Anzeigen einer Liste von Autorendatensätzen.</target>
+            </trans-unit>
+            <trans-unit id="plugin.author.show.title">
+                <source>Author detail view</source>
+            </trans-unit>
+            <trans-unit id="plugin.author.show.description">
+                <source>Displays an author profile in Frontend.</source>
+            </trans-unit>
+            <trans-unit id="flexform.sheet.general">
+                <source>General</source>
+            </trans-unit>
+            <trans-unit id="flexform.tab.settings">
+                <source>Settings</source>
+            </trans-unit>
+            <trans-unit id="flexform.settings.maxItems">
+                <source>Number of items per page</source>
+            </trans-unit>
+            <trans-unit id="flexform.settings.showSearchForm">
+                <source>Show search form</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

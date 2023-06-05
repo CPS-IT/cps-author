@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" product-name="cps_author">
+        <header/>
+        <body>
+            <trans-unit id="tx_cpsauthor_domain_model_author.title">
+                <source>Author</source>
+            </trans-unit>
+            <trans-unit id="author.type">
+                <source>Author type</source>
+            </trans-unit>
+            <trans-unit id="author.type.I.1" approved="yes">
+                <source>Author</source>
+            </trans-unit>
+            <trans-unit id="author.type.I.2" approved="yes">
+                <source>Network partner</source>
+            </trans-unit>
+            <trans-unit id="author.type.I.3" approved="yes">
+                <source>Contact</source>
+            </trans-unit>
+            <trans-unit id="author.gender" approved="yes">
+                <source>Gender</source>
+            </trans-unit>
+            <trans-unit id="author.gender.m" approved="yes">
+                <source>Male (Mr)</source>
+            </trans-unit>
+            <trans-unit id="author.gender.f" approved="yes">
+                <source>Female (Mrs)</source>
+            </trans-unit>
+            <trans-unit id="author.gender.v" approved="yes">
+                <source>Divers</source>
+            </trans-unit>
+            <trans-unit id="author.gender.undefined" approved="yes">
+                <source>Undefined</source>
+            </trans-unit>
+            <trans-unit id="author.first_name">
+                <source>First Name</source>
+            </trans-unit>
+            <trans-unit id="author.middle_name">
+                <source>Middle Name</source>
+            </trans-unit>
+            <trans-unit id="author.last_name">
+                <source>Last Name</source>
+            </trans-unit>
+            <trans-unit id="author.mobile">
+                <source>Mobile</source>
+            </trans-unit>
+            <trans-unit id="author.skype">
+                <source>Skype</source>
+            </trans-unit>
+            <trans-unit id="author.twitter">
+                <source>Twitter</source>
+            </trans-unit>
+            <trans-unit id="author.facebook">
+                <source>Facebook</source>
+            </trans-unit>
+            <trans-unit id="author.linkedin">
+                <source>LinkedIn</source>
+            </trans-unit>
+            <trans-unit id="author.instagram">
+                <source>Instagram</source>
+            </trans-unit>
+            <trans-unit id="author.company">
+                <source>Organization</source>
+            </trans-unit>
+            <trans-unit id="author.position">
+                <source>Position</source>
+            </trans-unit>
+            <trans-unit id="author.no_profile">
+                <source>Disable profile</source>
+            </trans-unit>
+            <trans-unit id="author_palette.organization">
+                <source>Organisation</source>
+            </trans-unit>
+            <trans-unit id="author_palette.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="author_palette.contact">
+                <source>Contact</source>
+            </trans-unit>
+            <trans-unit id="author_palette.social">
+                <source>Social Networks</source>
+            </trans-unit>
+            <trans-unit id="tab.general">
+                <source>General</source>
+            </trans-unit>
+            <trans-unit id="tab.social">
+                <source>Social Networks</source>
+            </trans-unit>
+            <trans-unit id="tab.contact">
+                <source>Contact</source>
+            </trans-unit>
+            <trans-unit id="tab.language">
+                <source>Language</source>
+            </trans-unit>
+            <trans-unit id="tab.access">
+                <source>Access</source>
+            </trans-unit>
+            <trans-unit id="author.location">
+                <source>Location</source>
+            </trans-unit>
+            <trans-unit id="author.institution_type">
+                <source>Institution type</source>
+            </trans-unit>
+            <trans-unit id="author.content_elements">
+                <source>Content element</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
