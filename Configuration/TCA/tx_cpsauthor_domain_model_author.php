@@ -529,9 +529,33 @@ return [
         ],
         'categories' => [
             'exclude' => true,
+            'l10n_mode' => 'exclude',
+            'label' => 'LLL:EXT:iki_projects/Resources/Private/Language/locallang_db.xlf:model.topics',
             'config' => [
-                'type' => 'passthrough',
-            ],
+                'type' => 'select',
+                'renderType' => 'selectTree',
+                'minitems' => 0,
+                'maxitems' => 99,
+                'foreign_table' => 'sys_category',
+                'foreign_table_where' => ' AND sys_category.pid IN (###PAGE_TSCONFIG_IDLIST###)  
+                    AND ({#sys_category}.{#sys_language_uid} IN (-1, 0) OR {#sys_category}.{#l10n_parent} = 0) 
+                    ORDER BY sys_category.sorting',
+                'MM' => 'sys_category_record_mm',
+                'MM_opposite_field' => 'items',
+                'MM_match_fields' => [
+                    'fieldname' => 'categories',
+                    'tablenames' => \Cpsit\CpsAuthor\Domain\Model\Author::TABLE_NAME,
+                ],
+                'treeConfig' => [
+                    'appearance' => [
+                        'nonSelectableLevels' => '0',
+                        'expandAll' => false
+                    ]
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+            ]
         ],
         'location' => [
             'exclude' => true,
@@ -555,7 +579,7 @@ return [
         ],
         'content_elements' => [
             'exclude' => true,
-            'label' => $ll .'author.content_elements',
+            'label' => $ll . 'author.content_elements',
             'config' => [
                 'type' => 'inline',
                 'allowed' => 'tt_content',

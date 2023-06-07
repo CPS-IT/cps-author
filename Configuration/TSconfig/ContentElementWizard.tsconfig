@@ -1,6 +1,6 @@
 mod.wizards.newContentElement.wizardItems.plugins {
 	elements {
-		gebaeudeforum-author-list {
+		cps-author-list {
 			iconIdentifier = icon_cps_author
 			title = LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.list.title
 			description = LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.list.description
@@ -9,7 +9,7 @@ mod.wizards.newContentElement.wizardItems.plugins {
 				list_type = cpsauthor_list
 			}
 		}
-		gebaeudeforum-author-show {
+		cps-author-show {
 			iconIdentifier = icon_cps_author
 			title = LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.show.title
 			description = LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.show.description
