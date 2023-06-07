@@ -53,7 +53,7 @@ class CategoryRepository extends Repository
         $constraints = [];
 
         if (!empty($pages = $demand->getPageIds())) {
-            $querySettings = new Typo3QuerySettings();
+            $querySettings = $query->getQuerySettings();
             $querySettings->setRespectStoragePage(true)
                 ->setStoragePageIds($pages);
             $query->setQuerySettings($querySettings);
