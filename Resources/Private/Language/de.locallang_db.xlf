@@ -140,6 +140,11 @@
                 <source>Content element</source>
                 <target>Inhaltselement</target>
             </trans-unit>
+            <trans-unit id="author.categories">
+                <source>Categories</source>
+                <target>Kategorien</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

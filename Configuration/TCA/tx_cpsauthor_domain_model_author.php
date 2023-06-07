@@ -530,7 +530,7 @@ return [
         'categories' => [
             'exclude' => true,
             'l10n_mode' => 'exclude',
-            'label' => 'LLL:EXT:iki_projects/Resources/Private/Language/locallang_db.xlf:model.topics',
+            'label' => $ll . 'author.categories',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectTree',

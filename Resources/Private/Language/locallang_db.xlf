@@ -99,6 +99,9 @@
             <trans-unit id="author.location">
                 <source>Location</source>
             </trans-unit>
+            <trans-unit id="author.categories">
+                <source>Categories</source>
+            </trans-unit>
             <trans-unit id="author.institution_type">
                 <source>Institution type</source>
             </trans-unit>
