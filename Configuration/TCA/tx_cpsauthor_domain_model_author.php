@@ -1,5 +1,5 @@
 <?php
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
 $tableName = \Cpsit\CpsAuthor\Domain\Model\Author::TABLE_NAME;
 $extensionKey = \Cpsit\CpsAuthor\Configuration\Extension::KEY;

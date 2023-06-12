@@ -21,6 +21,7 @@ use Cpsit\CpsAuthor\Domain\Model\Enum\Location;
 use Cpsit\CpsAuthor\Domain\Model\Dto\Factory\AuthorDemandFactory;
 use Cpsit\CpsAuthor\Domain\Repository\AuthorRepository;
 use Cpsit\CpsAuthor\Domain\Repository\CategoryRepository;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -51,8 +52,12 @@ class AuthorController extends ActionController
     protected Location $locationEnum;
     protected InstitutionType $institutionTypeEnum;
 
-    public function __construct(Location $locationEnum, InstitutionType $institutionTypeEnum, AuthorRepository $repository = null, CategoryRepository $categoryRepository = null)
-    {
+    public function __construct(
+        Location $locationEnum,
+        InstitutionType $institutionTypeEnum,
+        AuthorRepository $repository = null,
+        CategoryRepository $categoryRepository = null
+    ) {
         $this->authorRepository = $repository;
         $this->categoryRepository = $categoryRepository;
         $this->locationEnum = $locationEnum;
@@ -72,33 +77,32 @@ class AuthorController extends ActionController
         $this->settings = $this->parseTypoScriptStdWrap($this->settings);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function initializeView(ViewInterface $view)
+    protected function prepareView(): void
     {
-        $view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
+        $this->view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
         if (is_object($GLOBALS['TSFE'])) {
-            $view->assign('pageData', $GLOBALS['TSFE']->page);
+            $this->view->assign('pageData', $GLOBALS['TSFE']->page);
         }
-        parent::initializeView($view);
     }
 
-    public function listAction(): void
+    public function listAction(): ResponseInterface
     {
         $authorDemand = $this->createAuthorDemandFromSettings();
         $authors = $this->authorRepository->findDemanded($authorDemand);
+        $this->prepareView();
         $this->view->assign(SI::VIEW_VAR_AUTHORS, $authors);
+        return $this->htmlResponse();
     }
 
-    public function appAction(): void
+    public function appAction(): ResponseInterface
     {
+        return $this->htmlResponse();
     }
 
-    public function filterAction(): void
+    public function filterAction(): ResponseInterface
     {
         $categoryDemand = $this->createCategoryDemandFromSettings();
-
+        $this->prepareView();
         $this->view->assignMultiple(
             [
                 SI::VIEW_VAR_LOCATIONS => $this->locationEnum->getLocalizedConstants(false),
@@ -106,14 +110,15 @@ class AuthorController extends ActionController
                 SI::VIEW_VAR_CATEGORIES => $this->categoryRepository->findDemanded($categoryDemand)
             ]
         );
+        return $this->htmlResponse();
     }
 
-    public function listSelectedAction(): void
+    public function listSelectedAction(): ResponseInterface
     {
         $authorDemand = $this->createAuthorDemandFromSettings();
 
         $authors = $this->authorRepository->findByUidList($authorDemand->getAuthorIds());
-
+        $this->prepareView();
         $variables = [
             SI::VIEW_VAR_AUTHORS => $authors,
         ];
@@ -121,6 +126,7 @@ class AuthorController extends ActionController
         $this->view->assignMultiple(
             $variables
         );
+        return $this->htmlResponse();
     }
 
     /**
@@ -129,7 +135,7 @@ class AuthorController extends ActionController
      * @throws ImmediateResponseException
      * @throws InvalidQueryException
      */
-    public function showAction(Author $author = null, int $currentPage = 1): void
+    public function showAction(Author $author = null, int $currentPage = 1): ResponseInterface
     {
         if ($author == null && (int)$this->settings['singleAuthor'] > 0) {
             $authorDemand = $this->createAuthorDemandFromSettings();
@@ -143,11 +149,13 @@ class AuthorController extends ActionController
             );
             throw new ImmediateResponseException($response, 1624891925);
         }
-
+        $this->prepareView();
         $this->view->assignMultiple([
             SI::VIEW_VAR_AUTHOR => $author,
             SI::VIEW_VAR_CURRENT_PAGE => (int)$currentPage,
         ]);
+        return $this->htmlResponse();
+
     }
 
     protected function createAuthorDemandFromSettings(): DemandInterface
