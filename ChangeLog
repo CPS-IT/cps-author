@@ -1,0 +1,7 @@
+2023-06-13         [RELEASE] Release of cps_author 2.0.0 (Vladimir Falcon)
+2023-06-12 898a58e Removed deprecated globals and functions (Vladimir Falcon)
+2023-06-12 b52c826 Update  cpsit/cps-utility dependency (Vladimir Falcon)
+2023-06-07 d9eb76e [TASK] TCA label for categories corrected (Dirk Wenzel)
+2023-06-07 b8f3f4c TCA configuration for categorie field adapted (Dirk Wenzel)
+2023-06-07 264fded [BUGFIX] invalid depency injection in CategoryRepository fixed (Dirk Wenzel)
+2023-06-05 804f6b6 source code transferred from private repository, extension name changed, namespace adapted (Dirk Wenzel)
