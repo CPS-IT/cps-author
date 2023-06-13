@@ -1,0 +1,22 @@
+mod.wizards.newContentElement.wizardItems.plugins {
+	elements {
+		cps-author-list {
+			iconIdentifier = icon_cps_author
+			title = LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.list.title
+			description = LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.list.description
+			tt_content_defValues {
+				CType = list
+				list_type = cpsauthor_list
+			}
+		}
+		cps-author-show {
+			iconIdentifier = icon_cps_author
+			title = LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.show.title
+			description = LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.show.description
+			tt_content_defValues {
+				CType = list
+				list_type = cpsauthor_show
+			}
+		}
+	}
+}

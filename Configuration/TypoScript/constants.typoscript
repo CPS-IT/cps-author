@@ -1,0 +1,21 @@
+plugin.tx_cpsauthor {
+    view {
+        # cat=plugin.tx_cpsauthor/view/10; type=string; label=Path to template root (FE)
+        templateRootPath =
+        # cat=plugin.tx_cpsauthor/view/20; type=string; label=Path to template layouts (FE)
+        layoutRootPath =
+        # cat=plugin.tx_cpsauthor/view/30; type=string; label=Path to template partials (FE)
+        partialRootPaths =
+    }
+    settings {
+        # Storage page and subpages
+        recursive = 0
+        listPid = 0
+        sorting = sorting asc
+        defaultListPid = 0
+        defaultDetailPid = 0
+        categoryRecursive = 0
+        categoryListPid = 0
+        categorySorting = sorting asc
+    }
+}

@@ -1,0 +1,49 @@
+plugin.tx_cpsauthor {
+    view {
+        templateRootPaths {
+            0 = EXT:cps_author/Resources/Private/Templates
+            10 = {$plugin.tx_cpsauthor.view.templateRootPath}
+        }
+
+        layoutRootPaths {
+            0 = EXT:cps_author/Resources/Private/Layouts
+            10 = {$plugin.tx_cpsauthor.view.layoutRootPath}
+        }
+
+        partialRootPaths {
+            0 = EXT:cps_author/Resources/Private/Partials
+            10 = {$plugin.tx_cpsauthor.view.partialRootPaths.10}
+            20 = {$plugin.tx_cpsauthor.view.partialRootPaths.20}
+        }
+    }
+
+    settings {
+        // Demand:
+
+        // Storage page and subpages
+        recursive = {$plugin.tx_cpsauthor.settings.recursive}
+        listPid = {$plugin.tx_cpsauthor.settings.listPid}
+        sorting = {$plugin.tx_cpsauthor.settings.sorting}
+        listSelectedAuthors = 0
+        singleAuthor = 0
+        // allowed types: empty all types are allowed
+        allowedTypes =
+
+        // View
+        defaultDetailPid = {$plugin.tx_cpsauthor.settings.defaultDetailPid}
+        defaultListPid = {$plugin.tx_cpsauthor.settings.defaultListPid}
+
+        // Category
+        categoryRecursive = {$plugin.tx_cpsauthor.settings.categoryRecursive}
+        categoryListPid = {$plugin.tx_cpsauthor.settings.categoryListPid}
+        categorySorting = {$plugin.tx_cpsauthor.settings.categorySorting}
+    }
+}
+
+# Rendering of content elements in detail view
+lib.tx_cpsauthor.contentElementRendering = RECORDS
+lib.tx_cpsauthor.contentElementRendering {
+    tables = tt_content
+    source.current = 1
+    dontCheckPid = 1
+}

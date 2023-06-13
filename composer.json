@@ -1,0 +1,66 @@
+{
+  "name": "cpsit/cps-author",
+  "description": "Display authors. This package is an extension to the TYPO3 system.",
+  "homepage": "https://github.com/CPS-IT/cps-author",
+  "license": "GPL-2.0-or-later",
+  "type": "typo3-cms-extension",
+  "repositories": {
+    "cps-utility": {
+      "type": "vcs",
+      "url": "git@github.com:CPS-IT/cps-utility.git"
+    }
+  },
+  "require": {
+    "typo3/cms-core": "^11.5",
+    "dwenzel/t3extension-tools": "^2.0",
+    "cpsit/cps-utility": "^1.0",
+    "php": "^8.2"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master",
+    "nimut/testing-framework": "^6.0"
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "cps_author",
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": ".Build/Web"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Cpsit\\CpsAuthor\\": "Classes"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Cpsit\\CpsAuthor\\Tests\\": "Tests"
+    }
+  },
+  "config": {
+    "vendor-dir": ".Build/vendor/",
+    "bin-dir": ".Build/bin/",
+    "platform": {
+      "php": "8.2"
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "mkdir -p .Build/Web/typo3conf/ext/",
+      "[ -L .Build/Web/typo3conf/ext/cps_author ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/cps_author"
+    ],
+    "test": [
+      "@test:unit",
+      "@test:functional:run"
+    ],
+    "test:unit": [
+      "phpunit -c Tests/Build/UnitTests.xml"
+    ],
+    "test:functional:prepare": [
+      "typo3cms install:setup --no-interaction --use-existing-database"
+    ],
+    "test:functional:run": [
+      ".Build/bin/phpunit --colors -c Tests/Build/FunctionalTests.xml Tests/Functional/"
+    ]
+  }
+}
