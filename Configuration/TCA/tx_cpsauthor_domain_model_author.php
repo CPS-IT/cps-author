@@ -537,8 +537,8 @@ return [
                 'minitems' => 0,
                 'maxitems' => 99,
                 'foreign_table' => 'sys_category',
-                'foreign_table_where' => ' AND sys_category.pid IN (###PAGE_TSCONFIG_IDLIST###)  
-                    AND ({#sys_category}.{#sys_language_uid} IN (-1, 0) OR {#sys_category}.{#l10n_parent} = 0) 
+                'foreign_table_where' => ' AND sys_category.pid IN (###PAGE_TSCONFIG_IDLIST###)
+                    AND ({#sys_category}.{#sys_language_uid} IN (-1, 0) OR {#sys_category}.{#l10n_parent} = 0)
                     ORDER BY sys_category.sorting',
                 'MM' => 'sys_category_record_mm',
                 'MM_opposite_field' => 'items',
@@ -547,6 +547,7 @@ return [
                     'tablenames' => \Cpsit\CpsAuthor\Domain\Model\Author::TABLE_NAME,
                 ],
                 'treeConfig' => [
+                    'parentField' => 'parent',
                     'appearance' => [
                         'nonSelectableLevels' => '0',
                         'expandAll' => false
@@ -657,8 +658,8 @@ return [
         ],
         'social' => [
             'label' => $ll . 'author_palette.social',
-            'showitem' => 'instagram, twitter, 
-                        --linebreak--, facebook, linkedin, 
+            'showitem' => 'instagram, twitter,
+                        --linebreak--, facebook, linkedin,
                         --linebreak--, skype'
         ],
         'language' => [
