@@ -1,3 +1,6 @@
+2023-07-07         [RELEASE] Release of cps_author 2.0.1 (Vladimir Falcon)
+2023-07-07 88282f2 Fixed TCA error in category field (Vladimir Falcon)
+
 2023-06-13         [RELEASE] Release of cps_author 2.0.0 (Vladimir Falcon)
 2023-06-12 898a58e Removed deprecated globals and functions (Vladimir Falcon)
 2023-06-12 b52c826 Update  cpsit/cps-utility dependency (Vladimir Falcon)
