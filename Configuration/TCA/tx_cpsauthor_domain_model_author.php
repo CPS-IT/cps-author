@@ -161,7 +161,8 @@ return [
                 'type' => 'slug',
                 'size' => 50,
                 'generatorOptions' => [
-                    'fields' => ['uid', 'first_name', 'last_name'],
+                    // All necessary fields for the slug generation have to be present in the fields array
+                    'fields' => ['uid', 'first_name', 'last_name', 'company'],
                     'defaultFields' => ['uid', 'first_name', 'last_name'],
                     'authorFields' => ['uid', 'first_name', 'last_name'],
                     'networkPartnerFields' => ['uid', 'company'],
