@@ -1,18 +1,18 @@
 <?php
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'Gebaeudeforum Author',
-    'description' => 'Authors extension for the Gebaeudeforum project',
+    'title' => 'CPS Author',
+    'description' => 'Authors extension for the CPS project',
     'category' => 'fe',
     'state' => 'alpha',
     'author' => 'familie redlich:digital',
     'author_email' => 'v.falcon@familie-redlich.de',
     'author_company' => 'familie redlich digital',
-    'version' => '2.0.3',
+    'version' => '2.0.4',
     'constraints' =>
         [
             'depends' =>
                 [
-                    'typo3' => '9.5.0-10.4.99',
+                    'typo3' => '11.5.27 - 11.5.99',
                 ],
             'conflicts' =>
                 [
