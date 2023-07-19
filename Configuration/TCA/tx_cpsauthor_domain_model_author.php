@@ -165,7 +165,7 @@ return [
                     'fields' => ['uid', 'first_name', 'last_name', 'company'],
                     'defaultFields' => ['uid', 'first_name', 'last_name'],
                     'authorFields' => ['uid', 'first_name', 'last_name'],
-                    'networkPartnerFields' => ['uid', 'company'],
+                    'networkPartnerFields' => ['company'],
                     'fieldSeparator' => '/',
                     'replacements' => [
                         '/' => '-'
