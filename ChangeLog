@@ -1,3 +1,6 @@
+2023-07-19         [RELEASE] Release of cps_author 2.0.5 (Vladimir Falcon)
+2023-07-19 5d480e9 #45926 Removed uid from author slug generator networkPartnerFields (Vladimir Falcon)
+
 2023-07-12         [RELEASE] Release of cps_author 2.0.3 (Vladimir Falcon)
 2023-07-12 c8f85c9 45926 Fixed author slug generation by type (Vladimir Falcon)
 
