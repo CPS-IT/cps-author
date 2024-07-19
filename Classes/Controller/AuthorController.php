@@ -67,7 +67,7 @@ class AuthorController extends ActionController
     /**
      * @inheritDoc
      */
-    public function initializeAction()
+    public function initializeAction(): void
     {
         if (isset($this->settings['format'])) {
             $this->request->setFormat($this->settings['format']);
@@ -79,7 +79,7 @@ class AuthorController extends ActionController
 
     protected function prepareView(): void
     {
-        $this->view->assign('contentObjectData', $this->configurationManager->getContentObject()->data);
+        $this->view->assign('contentObjectData', $this->request->getAttribute('currentContentObject')->data);
         if (is_object($GLOBALS['TSFE'])) {
             $this->view->assign('pageData', $GLOBALS['TSFE']->page);
         }

@@ -40,8 +40,9 @@ class AuthorRepository extends Repository
     /**
      * @param DataMapper $dataMapper
      */
-    public function injectDataMapper(DataMapper $dataMapper)
+    public function __construct(DataMapper $dataMapper)
     {
+        parent::__construct();
         $this->dataMapper = $dataMapper;
     }
 

@@ -11,14 +11,14 @@
     }
   },
   "require": {
-    "typo3/cms-core": "^11.5",
-    "dwenzel/t3extension-tools": "^2.0",
-    "cpsit/cps-utility": "^1.0",
+    "typo3/cms-core": "^12.4",
+    "dwenzel/t3extension-tools": "dev-upgrade-12",
+    "cpsit/cps-utility": "^2.0",
     "php": "^8.2"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
-    "nimut/testing-framework": "^6.0"
+    "typo3/testing-framework": "^8.0"
   },
   "extra": {
     "typo3/cms": {
@@ -42,6 +42,10 @@
     "bin-dir": ".Build/bin/",
     "platform": {
       "php": "8.2"
+    },
+    "allow-plugins": {
+      "typo3/cms-composer-installers": true,
+      "typo3/class-alias-loader": true
     }
   },
   "scripts": {
@@ -57,7 +61,7 @@
       "phpunit -c Tests/Build/UnitTests.xml"
     ],
     "test:functional:prepare": [
-      "typo3cms install:setup --no-interaction --use-existing-database"
+      ".Build/bin/typo3 install:setup --no-interaction --use-existing-database"
     ],
     "test:functional:run": [
       ".Build/bin/phpunit --colors -c Tests/Build/FunctionalTests.xml Tests/Functional/"

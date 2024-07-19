@@ -17,7 +17,6 @@ return [
         'sortby' => 'sorting',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'delete' => 'deleted',
         'transOrigPointerField' => 'l10n_parent',
         'translationSource' => 'l10n_source',
@@ -38,7 +37,6 @@ return [
         ],
         'searchFields' => 'uid, first_name, middle_name, last_name, email, phone, fax, mobile, www, company, position, description',
     ],
-    'interface' => [],
     'columns' => [
         'hidden' => [
             'exclude' => true,
@@ -48,8 +46,7 @@ return [
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
                         'invertStateDisplay' => true,
                     ],
                 ],
@@ -59,28 +56,18 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
+                'type' => 'datetime',
                 'default' => 0,
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
             ],
         ],
         'endtime' => [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime,int',
+                'type' => 'datetime',
                 'default' => 0,
                 'range' => [
                     'upper' => mktime(0, 0, 0, 1, 1, 2038),
-                ],
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
                 ],
             ],
         ],
@@ -92,8 +79,8 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        '',
-                        0,
+                        'label' => '',
+                        'value' => 0,
                     ],
                 ],
                 'foreign_table' => $tableName,
@@ -128,19 +115,19 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        $ll . 'author.type.I.1',
-                        1,
-                        \Cpsit\CpsAuthor\Configuration\SettingsInterface::ICON_AUTHOR
+                        'label' => $ll . 'author.type.I.1',
+                        'value' => 1,
+                        'icon' => \Cpsit\CpsAuthor\Configuration\SettingsInterface::ICON_AUTHOR
                     ],
                     [
-                        $ll . 'author.type.I.2',
-                        2,
-                        \Cpsit\CpsAuthor\Configuration\SettingsInterface::ICON_NETWORK_PARTNER
+                        'label' => $ll . 'author.type.I.2',
+                        'value' => 2,
+                        'icon' =>\Cpsit\CpsAuthor\Configuration\SettingsInterface::ICON_NETWORK_PARTNER
                     ],
                     [
-                        $ll . 'author.type.I.3',
-                        3,
-                        \Cpsit\CpsAuthor\Configuration\SettingsInterface::ICON_CONTACT
+                        'label' => $ll . 'author.type.I.3',
+                        'value' => 3,
+                        'icon' => \Cpsit\CpsAuthor\Configuration\SettingsInterface::ICON_CONTACT
                     ],
                 ],
                 'fieldWizard' => [
@@ -187,10 +174,22 @@ return [
                 'renderType' => 'selectSingle',
                 'default' => '',
                 'items' => [
-                    [$ll . 'author.gender.m', 'm'],
-                    [$ll . 'author.gender.f', 'f'],
-                    [$ll . 'author.gender.v', 'v'],
-                    [$ll . 'author.gender.undefined', '']
+                    [
+                        'label' => $ll . 'author.gender.m',
+                        'value' => 'm'
+                    ],
+                    [
+                        'label' => $ll . 'author.gender.f',
+                        'value' => 'f'
+                    ],
+                    [
+                        'label' => $ll . 'author.gender.v',
+                        'value' => 'v'
+                    ],
+                    [
+                        'label' => $ll . 'author.gender.undefined',
+                        'value' => ''
+                    ]
                 ]
             ]
         ],
@@ -272,35 +271,13 @@ return [
             'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.www',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputLink',
-                'fieldControl' => [
-                    'linkPopup' => [
-                        'options' => [
-                            'blindLinkOptions' => 'mail,file,spec,folder',
-                        ],
-                    ],
-                ],
-                'eval' => 'trim',
-                'size' => 20,
-                'max' => 255,
-                'softref' => 'typolink,url',
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
+                'type' => 'link',
             ],
         ],
         'email' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.email',
             'config' => [
-                'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim,email',
-                'max' => 255,
-                'softref' => 'email',
-                'behaviour' => [
-                    'allowLanguageSynchronization' => true,
-                ],
+                'type' => 'email',
             ]
         ],
         'skype' => [
@@ -407,83 +384,82 @@ return [
         'images' => [
             'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.image',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                'images',
-                [
-                    'maxitems' => 6,
-                    'minitems' => 0,
-                    'appearance' => [
-                        'collapseAll' => true,
-                        'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
-                    ],
-                    'behaviour' => [
-                        'allowLanguageSynchronization' => true,
-                    ],
-                    'overrideChildTca' => [
-                        'types' => [
-                            '0' => [
-                                'showitem' => '
+            'config' => [
+                ### !!! Watch out for fieldName different from columnName
+                'type' => 'file',
+                'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
+                'maxitems' => 6,
+                'minitems' => 0,
+                'appearance' => [
+                    'collapseAll' => true,
+                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true,
+                ],
+                'overrideChildTca' => [
+                    'types' => [
+                        '0' => [
+                            'showitem' => '
                                     --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
                                     --palette--;;filePalette'
-                            ],
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-                                'showitem' => '
-                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                            ],
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                                'showitem' => '
-                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                            ],
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-                                'showitem' => '
-                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                            ],
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-                                'showitem' => '
-                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                            ],
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-                                'showitem' => '
-                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                            ],
                         ],
-                        'columns' => [
-                            'crop' => [
-                                'config' => [
-                                    'cropVariants' => [
-                                        'mobile' => [
-                                            'title' => 'Mobile',
-                                            'selectedRatio' => '16:9',
-                                            'allowedAspectRatios' => [
-                                                '16:9' => [
-                                                    'title' => '16:9',
-                                                    'value' => 16 / 9
-                                                ],
-                                            ]
-                                        ],
-                                        'tablet' => [
-                                            'title' => 'Tablet',
-                                            'selectedRatio' => '16:9',
-                                            'allowedAspectRatios' => [
-                                                '16:9' => [
-                                                    'title' => '16:9',
-                                                    'value' => 16 / 9
-                                                ],
-                                            ]
-                                        ],
-                                    ]
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                            'showitem' => '
+                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                            'showitem' => '
+                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                            'showitem' => '
+                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                            'showitem' => '
+                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                        ],
+                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                            'showitem' => '
+                                    --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                                    --palette--;;filePalette'
+                        ],
+                    ],
+                    'columns' => [
+                        'crop' => [
+                            'config' => [
+                                'cropVariants' => [
+                                    'mobile' => [
+                                        'title' => 'Mobile',
+                                        'selectedRatio' => '16:9',
+                                        'allowedAspectRatios' => [
+                                            '16:9' => [
+                                                'title' => '16:9',
+                                                'value' => 16 / 9
+                                            ],
+                                        ]
+                                    ],
+                                    'tablet' => [
+                                        'title' => 'Tablet',
+                                        'selectedRatio' => '16:9',
+                                        'allowedAspectRatios' => [
+                                            '16:9' => [
+                                                'title' => '16:9',
+                                                'value' => 16 / 9
+                                            ],
+                                        ]
+                                    ],
                                 ]
                             ]
                         ]
-                    ],
+                    ]
                 ],
-                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-            )
+            ]
         ],
         'description' => [
             'exclude' => true,
@@ -508,8 +484,7 @@ return [
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
                     ],
                 ],
                 'default' => 0,

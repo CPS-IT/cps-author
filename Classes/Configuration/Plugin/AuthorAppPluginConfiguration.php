@@ -16,6 +16,7 @@ use Cpsit\CpsAuthor\Configuration\SettingsInterface as SI;
 use Cpsit\CpsAuthor\Controller\AuthorController;
 
 /**
+ * Class AuthorAppPluginConfiguration
  * Provides configuration for the Author FE app
  */
 class AuthorAppPluginConfiguration implements PluginConfigurationInterface
@@ -32,5 +33,5 @@ class AuthorAppPluginConfiguration implements PluginConfigurationInterface
     ];
 
     static protected $nonCacheableControllerActions = [];
-    static protected $vendorExtensionName = SI::VENDOR_NAME . '.' . SI::KEY;
+    static protected $vendorExtensionName = SI::KEY;
 }

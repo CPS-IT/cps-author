@@ -40,5 +40,5 @@ class AuthorFilterPluginConfiguration implements PluginConfigurationInterface
     ];
 
     static protected $nonCacheableControllerActions = [];
-    static protected $vendorExtensionName = SI::VENDOR_NAME . '.' . SI::KEY;
+    static protected $vendorExtensionName = SI::KEY;
 }
