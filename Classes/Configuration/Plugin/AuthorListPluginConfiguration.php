@@ -11,27 +11,29 @@ namespace Cpsit\CpsAuthor\Configuration\Plugin;
  */
 
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationInterface;
-use DWenzel\T3extensionTools\Configuration\PluginConfigurationTrait;
 use Cpsit\CpsAuthor\Configuration\SettingsInterface as SI;
 use Cpsit\CpsAuthor\Controller\AuthorController;
+use DWenzel\T3extensionTools\Configuration\PluginConfigurationTrait;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 /**
  * Class AuthorListPluginConfiguration
  * Provides configuration for the Author
  */
+#[AutoconfigureTag('t3extensionTools.pluginConfiguration')]
 class AuthorListPluginConfiguration implements PluginConfigurationInterface
 {
     use PluginConfigurationTrait;
 
-    static protected $pluginName = 'List';
-    static protected $pluginSignature = 'cpsauthor_list';
-    static protected $pluginTitle = 'LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.list.title';
-
-    static protected $flexForm = 'FILE:EXT:cps_author/Configuration/FlexForms/AuthorListPlugin.xml';
-    static protected $controllerActions = [
+    protected string $extensionName = SI::KEY;
+    protected string $pluginName = 'List';
+    protected string $pluginSignature = 'cpsauthor_list';
+    protected string $pluginTitle = 'LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.list.title';
+    protected string $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN;
+    protected string $flexForm = 'FILE:EXT:cps_author/Configuration/FlexForms/AuthorListPlugin.xml';
+    protected array $controllerActions = [
         AuthorController::class => 'list'
     ];
-
-    static protected $nonCacheableControllerActions = [];
-    static protected $vendorExtensionName = SI::KEY;
+    protected array $nonCacheableControllerActions = [];
 }

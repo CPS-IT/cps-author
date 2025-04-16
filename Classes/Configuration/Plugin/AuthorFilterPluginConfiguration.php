@@ -21,24 +21,26 @@ use DWenzel\T3extensionTools\Configuration\PluginConfigurationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationTrait;
 use Cpsit\CpsAuthor\Configuration\SettingsInterface as SI;
 use Cpsit\CpsAuthor\Controller\AuthorController;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 /**
  * Class AuthorFilterPluginConfiguration
  * Provides configuration for the Author
  */
+#[AutoconfigureTag('t3extensionTools.pluginConfiguration')]
 class AuthorFilterPluginConfiguration implements PluginConfigurationInterface
 {
     use PluginConfigurationTrait;
 
-    static protected $pluginName = 'Filter';
-    static protected $pluginSignature = 'cpsauthor_filter';
-    static protected $pluginTitle = 'LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.filter.title';
-
-    static protected $flexForm = '';
-    static protected $controllerActions = [
+    protected string $pluginName = 'Filter';
+    protected string $pluginSignature = 'cpsauthor_filter';
+    protected string $pluginTitle = 'LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.filter.title';
+    protected string $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN;
+    protected string $flexForm = '';
+    protected array $controllerActions = [
         AuthorController::class => 'filter'
     ];
-
-    static protected $nonCacheableControllerActions = [];
-    static protected $vendorExtensionName = SI::KEY;
+    protected array $nonCacheableControllerActions = [];
+    protected string $extensionName = SI::KEY;
 }

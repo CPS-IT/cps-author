@@ -14,24 +14,33 @@ use DWenzel\T3extensionTools\Configuration\PluginConfigurationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationTrait;
 use Cpsit\CpsAuthor\Configuration\SettingsInterface as SI;
 use Cpsit\CpsAuthor\Controller\AuthorController;
+use DWenzel\T3extensionTools\Configuration\PluginRegistrationTrait;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 /**
  * Class AuthorAppPluginConfiguration
  * Provides configuration for the Author FE app
  */
+#[AutoconfigureTag('t3extensionTools.pluginConfiguration')]
+#[AutoconfigureTag('t3extensionTools.pluginRegistration')]
 class AuthorAppPluginConfiguration implements PluginConfigurationInterface
 {
     use PluginConfigurationTrait;
+    use PluginRegistrationTrait;
 
-    static protected $pluginName = 'App';
-    static protected $pluginSignature = 'cpsauthor_app';
-    static protected $pluginTitle = 'LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.app.title';
+    protected string $extensionName = SI::KEY;
+    protected string $pluginName = 'App';
+    protected string $pluginSignature = 'cpsauthor_app';
+    protected string $pluginTitle = 'LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.app.title';
+    protected string $pluginDescription = 'Plugin for the Author App';
+    protected string $pluginGroup = 'plugins';
+    protected string $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN;
 
-    static protected $flexForm = 'FILE:EXT:cps_author/Configuration/FlexForms/AuthorAppPlugin.xml';
-    static protected $controllerActions = [
+    protected string $flexForm = 'FILE:EXT:cps_author/Configuration/FlexForms/AuthorAppPlugin.xml';
+    protected array $controllerActions = [
         AuthorController::class => 'app'
     ];
 
-    static protected $nonCacheableControllerActions = [];
-    static protected $vendorExtensionName = SI::KEY;
+    protected array $nonCacheableControllerActions = [];
 }
