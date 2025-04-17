@@ -64,23 +64,23 @@ class Author extends AbstractDomainObject
      * Images
      *
      * @var ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
-     * @Cascade remove
-     * @Lazy
      */
+    #[Cascade(['value' => 'remove'])]
+    #[Lazy]
     protected $images;
 
     /**
      * Categories
      *
      * @var ObjectStorage<\Cpsit\CpsAuthor\Domain\Model\Category>
-     * @Lazy
      */
+    #[Lazy]
     protected $categories;
 
     /**
      * @var ObjectStorage<\Cpsit\CpsAuthor\Domain\Model\TtContent>
-     * @Lazy
      */
+    #[Lazy]
     protected $contentElements;
 
 
@@ -617,7 +617,7 @@ class Author extends AbstractDomainObject
      *
      * @param TtContent $contentElement
      */
-    public function addContentElement(TtContent $contentElement)
+    public function addContentElement(TtContent $contentElement): void
     {
         if ($this->getContentElements() === null) {
             $this->contentElements = new ObjectStorage();

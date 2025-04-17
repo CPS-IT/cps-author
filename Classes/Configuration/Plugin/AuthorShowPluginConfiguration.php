@@ -14,23 +14,33 @@ use DWenzel\T3extensionTools\Configuration\PluginConfigurationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationTrait;
 use Cpsit\CpsAuthor\Configuration\SettingsInterface as SI;
 use Cpsit\CpsAuthor\Controller\AuthorController;
+use DWenzel\T3extensionTools\Configuration\PluginRegistrationInterface;
+use DWenzel\T3extensionTools\Configuration\PluginRegistrationTrait;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 /**
  * Class AuthorShowPluginConfiguration
  * Provides configuration for the Author
+ * Plugin signature: cpsauthor_show
  */
-class AuthorShowPluginConfiguration implements PluginConfigurationInterface
+#[AutoconfigureTag('t3extensionTools.pluginConfiguration')]
+#[AutoconfigureTag('t3extensionTools.pluginRegistration')]
+class AuthorShowPluginConfiguration implements PluginConfigurationInterface, PluginRegistrationInterface
 {
     use PluginConfigurationTrait;
+    use PluginRegistrationTrait;
 
-    static protected $pluginName = 'Show';
-    static protected $pluginSignature = 'cpsauthor_show';
-    static protected $pluginTitle = 'LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.show.title';
-    static protected $flexForm = '';
-    static protected $controllerActions = [
+    protected string $extensionName = SI::KEY;
+    protected string $pluginName = 'Show';
+    protected string $pluginTitle = 'LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.show.title';
+    protected string $pluginDescription = 'Plugin for the newsletter registration form';
+    protected string $pluginGroup = 'plugins';
+    protected string $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN;
+    protected string $pluginIcon = SI::ICON_AUTHOR;
+    protected string $flexForm = '';
+    protected array $controllerActions = [
         AuthorController::class => 'show'
     ];
-
-    static protected $nonCacheableControllerActions = [];
-    static protected $vendorExtensionName = SI::VENDOR_NAME . '.' . SI::KEY;
+    protected array $nonCacheableControllerActions = [];
 }
