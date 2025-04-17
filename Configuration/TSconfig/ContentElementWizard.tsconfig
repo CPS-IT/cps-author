@@ -1,5 +1,6 @@
 mod.wizards.newContentElement.wizardItems.plugins {
 	elements {
+#    TODO this plugin is hidden so it triggers mismatch
 		cps-author-list {
 			iconIdentifier = icon_cps_author
 			title = LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.list.title

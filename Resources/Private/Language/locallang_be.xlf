@@ -27,6 +27,9 @@
             <trans-unit id="plugin.author.show.description">
                 <source>Displays an author profile in Frontend.</source>
             </trans-unit>
+			<trans-unit id="plugin.author.filter.title">
+				<source>Author filter form</source>
+			</trans-unit>
             <trans-unit id="flexform.sheet.general">
                 <source>General</source>
             </trans-unit>
