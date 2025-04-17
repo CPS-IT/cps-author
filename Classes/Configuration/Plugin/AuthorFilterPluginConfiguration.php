@@ -27,6 +27,7 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 /**
  * Class AuthorFilterPluginConfiguration
  * Provides configuration for the Author
+ * Plugin signature: cpsauthor_filter
  */
 #[AutoconfigureTag('t3extensionTools.pluginConfiguration')]
 class AuthorFilterPluginConfiguration implements PluginConfigurationInterface
@@ -34,7 +35,6 @@ class AuthorFilterPluginConfiguration implements PluginConfigurationInterface
     use PluginConfigurationTrait;
 
     protected string $pluginName = 'Filter';
-    protected string $pluginSignature = 'cpsauthor_filter';
     protected string $pluginTitle = 'LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.filter.title';
     protected string $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN;
     protected string $flexForm = '';

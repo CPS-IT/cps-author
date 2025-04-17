@@ -14,6 +14,7 @@ use DWenzel\T3extensionTools\Configuration\PluginConfigurationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginConfigurationTrait;
 use Cpsit\CpsAuthor\Configuration\SettingsInterface as SI;
 use Cpsit\CpsAuthor\Controller\AuthorController;
+use DWenzel\T3extensionTools\Configuration\PluginRegistrationInterface;
 use DWenzel\T3extensionTools\Configuration\PluginRegistrationTrait;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
@@ -21,10 +22,11 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 /**
  * Class AuthorAppPluginConfiguration
  * Provides configuration for the Author FE app
+ * Plugin Signature: cpsauthor_app
  */
 #[AutoconfigureTag('t3extensionTools.pluginConfiguration')]
 #[AutoconfigureTag('t3extensionTools.pluginRegistration')]
-class AuthorAppPluginConfiguration implements PluginConfigurationInterface
+class AuthorAppPluginConfiguration implements PluginConfigurationInterface, PluginRegistrationInterface
 {
     use PluginConfigurationTrait;
     use PluginRegistrationTrait;
@@ -36,7 +38,7 @@ class AuthorAppPluginConfiguration implements PluginConfigurationInterface
     protected string $pluginDescription = 'Plugin for the Author App';
     protected string $pluginGroup = 'plugins';
     protected string $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN;
-
+    protected string $pluginIcon = SI::ICON_AUTHOR;
     protected string $flexForm = 'FILE:EXT:cps_author/Configuration/FlexForms/AuthorAppPlugin.xml';
     protected array $controllerActions = [
         AuthorController::class => 'app'

@@ -20,6 +20,7 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 /**
  * Class AuthorListPluginConfiguration
  * Provides configuration for the Author
+ * Plugin signature: cpsauthor_list
  */
 #[AutoconfigureTag('t3extensionTools.pluginConfiguration')]
 class AuthorListPluginConfiguration implements PluginConfigurationInterface
@@ -28,7 +29,6 @@ class AuthorListPluginConfiguration implements PluginConfigurationInterface
 
     protected string $extensionName = SI::KEY;
     protected string $pluginName = 'List';
-    protected string $pluginSignature = 'cpsauthor_list';
     protected string $pluginTitle = 'LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.list.title';
     protected string $pluginType = ExtensionUtility::PLUGIN_TYPE_PLUGIN;
     protected string $flexForm = 'FILE:EXT:cps_author/Configuration/FlexForms/AuthorListPlugin.xml';

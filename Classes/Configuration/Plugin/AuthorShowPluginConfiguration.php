@@ -22,6 +22,7 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 /**
  * Class AuthorShowPluginConfiguration
  * Provides configuration for the Author
+ * Plugin signature: cpsauthor_show
  */
 #[AutoconfigureTag('t3extensionTools.pluginConfiguration')]
 #[AutoconfigureTag('t3extensionTools.pluginRegistration')]
@@ -32,7 +33,6 @@ class AuthorShowPluginConfiguration implements PluginConfigurationInterface, Plu
 
     protected string $extensionName = SI::KEY;
     protected string $pluginName = 'Show';
-    protected string $pluginSignature = 'cpsauthor_show';
     protected string $pluginTitle = 'LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:plugin.author.show.title';
     protected string $pluginDescription = 'Plugin for the newsletter registration form';
     protected string $pluginGroup = 'plugins';
