@@ -1,3 +1,6 @@
+2025-12-12         [RELEASE] Release of cps-author 3.0.1 (Vladimir Falcón Piva)
+2025-12-12 2520c44 [TASK] Update cpsit/cps-utility dependency to version 3.2 (Vladimir Falcón Piva)
+
 2025-04-17         [RELEASE] Release of cps-author 3.0.0 (Dirk Wenzel)
 2025-04-17 44a5d9f missing icons added to plugin configuration (Dirk Wenzel)
 2025-04-16 79717c9 req dwenzel/t3extension-tools:^4.0 (Dirk Wenzel)
