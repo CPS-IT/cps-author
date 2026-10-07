@@ -1,0 +1,4 @@
+tx_cpsauthor_domain_model_author
+,uid,pid,type,first_name,middle_name,last_name,email,phone,company,position
+,1,1,1,Max,Muster,Man,max@email.com,+16723548591,Max Company,Max position
+,2,3,2,Max,Muster,Man,max@email.com,+16723548591,Max Company,Max position
