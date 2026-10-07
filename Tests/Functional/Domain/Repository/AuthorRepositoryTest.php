@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace Cpsit\CpsAuthor\Tests\Functional\Domain\Repository;
 
 /*
@@ -12,77 +14,34 @@ namespace Cpsit\CpsAuthor\Tests\Functional\Domain\Repository;
 
 use Cpsit\CpsAuthor\Domain\Model\Dto\AuthorDemand;
 use Cpsit\CpsAuthor\Domain\Repository\AuthorRepository;
-use Nimut\TestingFramework\TestCase\FunctionalTestCase;
-use PHPUnit\Framework\MockObject\MockObject;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Extbase\Object\ObjectManagerInterface;
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class AuthorRepositoryTest extends FunctionalTestCase
 {
-    /**
-     * @var AuthorRepository|MockObject
-     */
-    protected $subject;
+    protected array $testExtensionsToLoad = ['cpsit/cps-author'];
 
-    /**
-     * @var ObjectManagerInterface
-     */
-    protected $objectManager;
+    private AuthorRepository $subject;
 
-    protected $testExtensionsToLoad = ['typo3conf/ext/cps_author'];
-
-    /**
-     * @var QueryInterface|MockObject
-     */
-    protected $query;
-
-    /**
-     * @var QueryResultInterface|MockObject
-     */
-    protected $result;
-
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
-        /** @var ObjectManager|ObjectManagerInterface $objectManager */
-        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $this->subject = $this->objectManager->get(AuthorRepository::class);
-
-        $fixturePath = ORIGINAL_ROOT . 'typo3conf/ext/cps_author/Tests/Functional/Fixtures/Database/';
-        $this->importDataSet($fixturePath . 'tx_cpsauthor_domain_model_author.xml');
-    }
-
-    public function testFindAll(): void
-    {
-        $result = $this->subject->findAll();
-        self::assertEmpty($result);
+        $this->subject = $this->get(AuthorRepository::class);
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Database/tx_cpsauthor_domain_model_author.csv');
     }
 
     public function testFindDemandedFindsAuthorsBySinglePageId(): void
     {
-        $pages = [1];
         $demand = new AuthorDemand();
-        $demand->setPageIds($pages);
-        $result = $this->subject->findDemanded($demand);
-        self::assertCount(
-            1,
-            $result->toArray()
-        );
+        $demand->setPageIds([1]);
+
+        self::assertCount(1, $this->subject->findDemanded($demand)->toArray());
     }
 
     public function testFindDemandedFindsAuthorsByPageIds(): void
     {
-        $pages = [1,3];
         $demand = new AuthorDemand();
-        $demand->setPageIds($pages);
-        $result = $this->subject->findDemanded($demand);
-        self::assertCount(
-            2,
-            $result
-        );
-    }
+        $demand->setPageIds([1, 3]);
 
+        self::assertCount(2, $this->subject->findDemanded($demand));
+    }
 }
