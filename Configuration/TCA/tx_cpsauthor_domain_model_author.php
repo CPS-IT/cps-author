@@ -9,6 +9,9 @@ $generalLanguageFilePrefix = 'LLL:EXT:core/Resources/Private/Language/';
 
 return [
     'ctrl' => [
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
         'title' => $ll . $tableName . '.title',
         'label' => 'last_name',
         'label_alt' => 'first_name, last_name, company',
