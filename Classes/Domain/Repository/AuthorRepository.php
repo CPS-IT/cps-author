@@ -125,10 +125,14 @@ class AuthorRepository extends Repository
             ->select('*')
             ->from(Author::TABLE_NAME)
             ->where($queryBuilder->expr()->in(Author::FIELD_UID, $uidList))
-            ->add('orderBy',
-                'FIELD(' . Author::TABLE_NAME . '.' . Author::FIELD_UID . ',' . implode(',', $uidList) . ')')
-            ->execute()
+            ->executeQuery()
             ->fetchAllAssociative();
+
+        $position = array_flip(array_map('intval', $uidList));
+        usort(
+            $rows,
+            static fn (array $a, array $b): int => $position[(int)$a[Author::FIELD_UID]] <=> $position[(int)$b[Author::FIELD_UID]]
+        );
 
         return $this->dataMapper->map(Author::class, $rows);
     }
