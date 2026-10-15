@@ -6,18 +6,14 @@
     <sheets>
         <sDEF>
             <ROOT>
-                <TCEforms>
-                    <sheetTitle>LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:flexform.tab.settings</sheetTitle>
-                </TCEforms>
+                <sheetTitle>LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:flexform.tab.settings</sheetTitle>
                 <type>array</type>
                 <el>
                     <settings.showSearchForm>
-                        <TCEforms>
-                            <label>LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:flexform.settings.showSearchForm</label>
-                            <config>
-                                <type>check</type>
-                            </config>
-                        </TCEforms>
+                        <label>LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:flexform.settings.showSearchForm</label>
+                        <config>
+                            <type>check</type>
+                        </config>
                     </settings.showSearchForm>
                 </el>
             </ROOT>
