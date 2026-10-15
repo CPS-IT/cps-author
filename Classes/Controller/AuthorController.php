@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\CpsAuthor\Controller;
@@ -13,23 +14,23 @@ namespace Cpsit\CpsAuthor\Controller;
 
 use Cpsit\CpsAuthor\Configuration\SettingsInterface as SI;
 use Cpsit\CpsAuthor\Domain\Model\Author;
-use Cpsit\CpsAuthor\Domain\Model\Dto\DemandInterface;
 use Cpsit\CpsAuthor\Domain\Model\Dto\AuthorDemand;
+use Cpsit\CpsAuthor\Domain\Model\Dto\CategoryDemand;
+use Cpsit\CpsAuthor\Domain\Model\Dto\Factory\AuthorDemandFactory;
 use Cpsit\CpsAuthor\Domain\Model\Dto\Factory\CategoryDemandFactory;
 use Cpsit\CpsAuthor\Domain\Model\Enum\InstitutionType;
 use Cpsit\CpsAuthor\Domain\Model\Enum\Location;
-use Cpsit\CpsAuthor\Domain\Model\Dto\Factory\AuthorDemandFactory;
 use Cpsit\CpsAuthor\Domain\Repository\AuthorRepository;
 use Cpsit\CpsAuthor\Domain\Repository\CategoryRepository;
-use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Http\ImmediateResponseException;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
-use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use Cpsit\CpsUtility\Traits\ExtBaseTypoScriptStdWrapParserTrait;
 use Cpsit\CpsUtility\Traits\FeCacheTagsTrait;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\PropagateResponseException;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Frontend\Controller\ErrorController;
+use TYPO3\CMS\Frontend\Page\PageInformation;
 
 /**
  * Class AuthorController
@@ -39,30 +40,12 @@ class AuthorController extends ActionController
     use ExtBaseTypoScriptStdWrapParserTrait;
     use FeCacheTagsTrait;
 
-    /**
-     * @var AuthorRepository|null
-     */
-    protected AuthorRepository $authorRepository;
-
-    /**
-     * @var CategoryRepository|null
-     */
-    protected CategoryRepository $categoryRepository;
-
-    protected Location $locationEnum;
-    protected InstitutionType $institutionTypeEnum;
-
     public function __construct(
-        Location $locationEnum,
-        InstitutionType $institutionTypeEnum,
-        AuthorRepository $repository = null,
-        CategoryRepository $categoryRepository = null
-    ) {
-        $this->authorRepository = $repository;
-        $this->categoryRepository = $categoryRepository;
-        $this->locationEnum = $locationEnum;
-        $this->institutionTypeEnum = $institutionTypeEnum;
-    }
+        protected Location $locationEnum,
+        protected InstitutionType $institutionTypeEnum,
+        protected AuthorRepository $authorRepository,
+        protected CategoryRepository $categoryRepository
+    ) {}
 
     /**
      * @inheritDoc
@@ -70,7 +53,7 @@ class AuthorController extends ActionController
     public function initializeAction(): void
     {
         if (isset($this->settings['format'])) {
-            $this->request->setFormat($this->settings['format']);
+            $this->request = $this->request->withFormat($this->settings['format']);
         }
 
         $this->addCacheTags([SI::FE_CACHE_TAG_AUTHOR]);
@@ -80,8 +63,9 @@ class AuthorController extends ActionController
     protected function prepareView(): void
     {
         $this->view->assign('contentObjectData', $this->request->getAttribute('currentContentObject')->data);
-        if (is_object($GLOBALS['TSFE'])) {
-            $this->view->assign('pageData', $GLOBALS['TSFE']->page);
+        $pageInformation = $this->request->getAttribute('frontend.page.information');
+        if ($pageInformation instanceof PageInformation) {
+            $this->view->assign('pageData', $pageInformation->getPageRecord());
         }
     }
 
@@ -107,7 +91,7 @@ class AuthorController extends ActionController
             [
                 SI::VIEW_VAR_LOCATIONS => $this->locationEnum->getLocalizedConstants(false),
                 SI::VIEW_VAR_INSTITUTION_TYPES => $this->institutionTypeEnum->getLocalizedConstants(false),
-                SI::VIEW_VAR_CATEGORIES => $this->categoryRepository->findDemanded($categoryDemand)
+                SI::VIEW_VAR_CATEGORIES => $this->categoryRepository->findDemanded($categoryDemand),
             ]
         );
         return $this->htmlResponse();
@@ -132,10 +116,10 @@ class AuthorController extends ActionController
     /**
      * @param Author|null $author
      * @param int $currentPage
-     * @throws ImmediateResponseException
+     * @throws PropagateResponseException
      * @throws InvalidQueryException
      */
-    public function showAction(Author $author = null, int $currentPage = 1): ResponseInterface
+    public function showAction(?Author $author = null, int $currentPage = 1): ResponseInterface
     {
         if ($author == null && (int)$this->settings['singleAuthor'] > 0) {
             $authorDemand = $this->createAuthorDemandFromSettings();
@@ -144,10 +128,10 @@ class AuthorController extends ActionController
         if ($author == null) {
             $message = 'No project entry found!';
             $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
-                $GLOBALS['TYPO3_REQUEST'],
+                $this->request,
                 $message
             );
-            throw new ImmediateResponseException($response, 1624891925);
+            throw new PropagateResponseException($response, 1624891925);
         }
         $this->prepareView();
         $this->view->assignMultiple([
@@ -158,12 +142,12 @@ class AuthorController extends ActionController
 
     }
 
-    protected function createAuthorDemandFromSettings(): DemandInterface
+    protected function createAuthorDemandFromSettings(): AuthorDemand
     {
         return GeneralUtility::makeInstance(AuthorDemandFactory::class)->create($this->settings);
     }
 
-    protected function createCategoryDemandFromSettings(): DemandInterface
+    protected function createCategoryDemandFromSettings(): CategoryDemand
     {
         return GeneralUtility::makeInstance(CategoryDemandFactory::class)->create($this->settings);
     }

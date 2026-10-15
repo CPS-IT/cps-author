@@ -12,5 +12,10 @@ namespace Cpsit\CpsAuthor\Domain\Model\Dto;
 
 interface DemandInterface
 {
+    /**
+     * @return int[]
+     */
+    public function getPageIds(): array;
 
+    public function getSorting(): string;
 }

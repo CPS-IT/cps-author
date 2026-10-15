@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -17,10 +18,10 @@ return [
         'tableName' => \Cpsit\CpsAuthor\Domain\Model\TtContent::TABLE,
         'properties' => [
             'colPos' => [
-                'fieldName' => 'colPos'
+                'fieldName' => 'colPos',
             ],
             'CType' => [
-                'fieldName' => 'CType'
+                'fieldName' => 'CType',
             ],
         ],
     ],

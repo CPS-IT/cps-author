@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\CpsAuthor\Tests\Unit\Domain\Model;
@@ -97,6 +98,7 @@ class AuthorTest extends TestCase
     public function testImagesCanBeSet(): void
     {
         $image = new FileReference();
+        /** @var ObjectStorage<FileReference> $storage */
         $storage = new ObjectStorage();
         $storage->attach($image);
 
@@ -123,6 +125,7 @@ class AuthorTest extends TestCase
     public function testImageCanBeRemoved(): void
     {
         $image = new FileReference();
+        /** @var ObjectStorage<FileReference> $storage */
         $storage = new ObjectStorage();
         $storage->attach($image);
 

@@ -1,4 +1,5 @@
 <?php
+
 defined('TYPO3') or die();
 
 $tableName = \Cpsit\CpsAuthor\Domain\Model\Author::TABLE_NAME;
@@ -6,9 +7,11 @@ $extensionKey = \Cpsit\CpsAuthor\Configuration\Extension::KEY;
 $ll = 'LLL:EXT:' . $extensionKey . '/Resources/Private/Language/locallang_db.xlf:';
 $generalLanguageFilePrefix = 'LLL:EXT:core/Resources/Private/Language/';
 
-
 return [
     'ctrl' => [
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
         'title' => $ll . $tableName . '.title',
         'label' => 'last_name',
         'label_alt' => 'first_name, last_name, company',
@@ -117,17 +120,17 @@ return [
                     [
                         'label' => $ll . 'author.type.I.1',
                         'value' => 1,
-                        'icon' => \Cpsit\CpsAuthor\Configuration\SettingsInterface::ICON_AUTHOR
+                        'icon' => \Cpsit\CpsAuthor\Configuration\SettingsInterface::ICON_AUTHOR,
                     ],
                     [
                         'label' => $ll . 'author.type.I.2',
                         'value' => 2,
-                        'icon' =>\Cpsit\CpsAuthor\Configuration\SettingsInterface::ICON_NETWORK_PARTNER
+                        'icon' => \Cpsit\CpsAuthor\Configuration\SettingsInterface::ICON_NETWORK_PARTNER,
                     ],
                     [
                         'label' => $ll . 'author.type.I.3',
                         'value' => 3,
-                        'icon' => \Cpsit\CpsAuthor\Configuration\SettingsInterface::ICON_CONTACT
+                        'icon' => \Cpsit\CpsAuthor\Configuration\SettingsInterface::ICON_CONTACT,
                     ],
                 ],
                 'fieldWizard' => [
@@ -138,7 +141,7 @@ return [
                 'default' => 1,
                 'size' => 1,
                 'maxitems' => 1,
-            ]
+            ],
         ],
         'slug' => [
             'exclude' => true,
@@ -155,16 +158,16 @@ return [
                     'networkPartnerFields' => ['company'],
                     'fieldSeparator' => '/',
                     'replacements' => [
-                        '/' => '-'
+                        '/' => '-',
                     ],
                     'postModifiers' => [
-                        \Cpsit\CpsAuthor\Slug\AuthorSlugModifier::class . '->modifySlugByAuthorType'
-                    ]
+                        \Cpsit\CpsAuthor\Slug\AuthorSlugModifier::class . '->modifySlugByAuthorType',
+                    ],
                 ],
                 'fallbackCharacter' => '-',
                 'eval' => 'unique',
-                'default' => ''
-            ]
+                'default' => '',
+            ],
         ],
         'gender' => [
             'label' => $ll . 'author.gender',
@@ -176,22 +179,22 @@ return [
                 'items' => [
                     [
                         'label' => $ll . 'author.gender.m',
-                        'value' => 'm'
+                        'value' => 'm',
                     ],
                     [
                         'label' => $ll . 'author.gender.f',
-                        'value' => 'f'
+                        'value' => 'f',
                     ],
                     [
                         'label' => $ll . 'author.gender.v',
-                        'value' => 'v'
+                        'value' => 'v',
                     ],
                     [
                         'label' => $ll . 'author.gender.undefined',
-                        'value' => ''
-                    ]
-                ]
-            ]
+                        'value' => '',
+                    ],
+                ],
+            ],
         ],
         'first_name' => [
             'exclude' => false,
@@ -202,8 +205,8 @@ return [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => 'trim',
-                'max' => 255
-            ]
+                'max' => 255,
+            ],
         ],
         'middle_name' => [
             'exclude' => false,
@@ -214,8 +217,8 @@ return [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => 'trim',
-                'max' => 255
-            ]
+                'max' => 255,
+            ],
         ],
         'last_name' => [
             'exclude' => false,
@@ -226,8 +229,8 @@ return [
                 'type' => 'input',
                 'size' => 20,
                 'eval' => 'trim',
-                'max' => 255
-            ]
+                'max' => 255,
+            ],
         ],
         'phone' => [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.phone',
@@ -239,7 +242,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'fax' => [
             'exclude' => true,
@@ -252,7 +255,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'mobile' => [
             'exclude' => true,
@@ -265,7 +268,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'www' => [
             'exclude' => true,
@@ -278,7 +281,7 @@ return [
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.email',
             'config' => [
                 'type' => 'email',
-            ]
+            ],
         ],
         'skype' => [
             'exclude' => true,
@@ -293,7 +296,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'twitter' => [
             'exclude' => true,
@@ -308,7 +311,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'facebook' => [
             'exclude' => true,
@@ -323,7 +326,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'linkedin' => [
             'exclude' => true,
@@ -338,7 +341,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'instagram' => [
             'exclude' => true,
@@ -353,7 +356,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'company' => [
             'exclude' => true,
@@ -366,7 +369,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'position' => [
             'exclude' => true,
@@ -379,20 +382,20 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'images' => [
             'exclude' => true,
             'label' => $generalLanguageFilePrefix . 'locallang_general.xlf:LGL.image',
             'config' => [
-                ### !!! Watch out for fieldName different from columnName
+                //## !!! Watch out for fieldName different from columnName
                 'type' => 'file',
                 'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
                 'maxitems' => 6,
                 'minitems' => 0,
                 'appearance' => [
                     'collapseAll' => true,
-                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
+                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference',
                 ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
@@ -402,32 +405,32 @@ return [
                         '0' => [
                             'showitem' => '
                                     --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                    --palette--;;filePalette'
+                                    --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                        \TYPO3\CMS\Core\Resource\FileType::TEXT->value => [
                             'showitem' => '
                                     --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                    --palette--;;filePalette'
+                                    --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                        \TYPO3\CMS\Core\Resource\FileType::IMAGE->value => [
                             'showitem' => '
                                     --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                    --palette--;;filePalette'
+                                    --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                        \TYPO3\CMS\Core\Resource\FileType::AUDIO->value => [
                             'showitem' => '
                                     --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                    --palette--;;filePalette'
+                                    --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                        \TYPO3\CMS\Core\Resource\FileType::VIDEO->value => [
                             'showitem' => '
                                     --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                    --palette--;;filePalette'
+                                    --palette--;;filePalette',
                         ],
-                        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                        \TYPO3\CMS\Core\Resource\FileType::APPLICATION->value => [
                             'showitem' => '
                                     --palette--;' . $generalLanguageFilePrefix . 'locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                                    --palette--;;filePalette'
+                                    --palette--;;filePalette',
                         ],
                     ],
                     'columns' => [
@@ -440,9 +443,9 @@ return [
                                         'allowedAspectRatios' => [
                                             '16:9' => [
                                                 'title' => '16:9',
-                                                'value' => 16 / 9
+                                                'value' => 16 / 9,
                                             ],
-                                        ]
+                                        ],
                                     ],
                                     'tablet' => [
                                         'title' => 'Tablet',
@@ -450,16 +453,16 @@ return [
                                         'allowedAspectRatios' => [
                                             '16:9' => [
                                                 'title' => '16:9',
-                                                'value' => 16 / 9
+                                                'value' => 16 / 9,
                                             ],
-                                        ]
+                                        ],
                                     ],
-                                ]
-                            ]
-                        ]
-                    ]
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
-            ]
+            ],
         ],
         'description' => [
             'exclude' => true,
@@ -474,7 +477,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'no_profile' => [
             'exclude' => true,
@@ -513,13 +516,13 @@ return [
                     'parentField' => 'parent',
                     'appearance' => [
                         'nonSelectableLevels' => '0',
-                        'expandAll' => false
-                    ]
+                        'expandAll' => false,
+                    ],
                 ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
         'location' => [
             'exclude' => true,
@@ -529,7 +532,7 @@ return [
                 'renderType' => 'selectSingle',
                 'itemsProcFunc' => 'Cpsit\CpsAuthor\Service\ItemsProcFunc->getLocationsForTca',
                 'default' => '0',
-            ]
+            ],
         ],
         'institution_type' => [
             'exclude' => true,
@@ -539,7 +542,7 @@ return [
                 'renderType' => 'selectSingle',
                 'itemsProcFunc' => 'Cpsit\CpsAuthor\Service\ItemsProcFunc->getInstitutionTypesForTca',
                 'default' => '0',
-            ]
+            ],
         ],
         'content_elements' => [
             'exclude' => true,
@@ -562,12 +565,12 @@ return [
                     'showSynchronizationLink' => true,
                     'enabledControls' => [
                         'info' => false,
-                    ]
+                    ],
                 ],
                 'behaviour' => [
                     'allowLanguageSynchronization' => true,
                 ],
-            ]
+            ],
         ],
     ],
     'types' => [
@@ -605,25 +608,25 @@ return [
             'label' => $ll . 'author_palette.organization',
             'showitem' => 'company, institution_type,
             --linebreak--, location,
-            --linebreak--, images'
+            --linebreak--, images',
         ],
 
         'name' => [
             'label' => $ll . 'author_palette.name',
             'showitem' => 'gender, position, --linebreak--, first_name, middle_name, last_name,
-            --linebreak--, slug'
+            --linebreak--, slug',
         ],
         'contact' => [
             'label' => $ll . 'author_palette.contact',
             'showitem' => 'email, --linebreak--,
                             phone, mobile, fax, --linebreak--,
-                            www'
+                            www',
         ],
         'social' => [
             'label' => $ll . 'author_palette.social',
             'showitem' => 'instagram, twitter,
                         --linebreak--, facebook, linkedin,
-                        --linebreak--, skype'
+                        --linebreak--, skype',
         ],
         'language' => [
             'showitem' => 'sys_language_uid, l10n_parent',

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\CpsAuthor\Domain\Model;
@@ -12,7 +13,6 @@ namespace Cpsit\CpsAuthor\Domain\Model;
  */
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-
 
 /**
  * Model of tt_content
@@ -56,4 +56,3 @@ class TtContent extends AbstractEntity
         $this->CType = $CType;
     }
 }
-

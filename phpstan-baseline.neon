@@ -1,0 +1,19 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Strict comparison using \=\=\= between TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage\<Cpsit\\CpsAuthor\\Domain\\Model\\TtContent\> and null will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 1
+			path: Classes/Domain/Model/Author.php
+
+		-
+			message: '#^Instanceof between TYPO3\\CMS\\Extbase\\Domain\\Model\\Category\|null and TYPO3\\CMS\\Extbase\\Persistence\\Generic\\LazyLoadingProxy will always evaluate to false\.$#'
+			identifier: instanceof.alwaysFalse
+			count: 1
+			path: Classes/Domain/Model/Category.php
+
+		-
+			message: '#^Class FriendsOfTYPO3\\TtAddress\\Evaluation\\TelephoneEvaluation not found\.$#'
+			identifier: class.notFound
+			count: 2
+			path: Configuration/TCA/tx_cpsauthor_domain_model_author.php

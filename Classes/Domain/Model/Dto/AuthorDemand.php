@@ -127,7 +127,6 @@ class AuthorDemand implements DemandInterface
         $this->noProfile = $noProfile;
     }
 
-
     /**
      * @return string
      */

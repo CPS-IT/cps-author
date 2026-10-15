@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of thecps_author project.
@@ -10,8 +11,6 @@ declare(strict_types=1);
 
 namespace Cpsit\CpsAuthor\Domain\Repository;
 
-
-use Cpsit\CpsAuthor\Domain\Model\Dto\CategoryDemand;
 use Cpsit\CpsAuthor\Domain\Model\Dto\DemandInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
@@ -19,9 +18,9 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 trait Orderings
 {
     /**
-     * @param QueryInterface $query
-     * @param CategoryDemand $demand
-     * @return array
+     * @template T of object
+     * @param QueryInterface<T> $query
+     * @return array<string, string>
      */
     protected function applyOrderings(QueryInterface $query, DemandInterface $demand): array
     {
@@ -33,9 +32,9 @@ trait Orderings
                 [$orderField, $ascDesc] = GeneralUtility::trimExplode(' ', $orderItem, true);
                 // count == 1 means that no direction is given
                 if ($ascDesc) {
-                    $orderings[$orderField] = ((strtolower($ascDesc) === 'desc') ?
-                        QueryInterface::ORDER_DESCENDING :
-                        QueryInterface::ORDER_ASCENDING);
+                    $orderings[$orderField] = ((strtolower($ascDesc) === 'desc')
+                        ? QueryInterface::ORDER_DESCENDING
+                        : QueryInterface::ORDER_ASCENDING);
                 } else {
                     $orderings[$orderField] = QueryInterface::ORDER_ASCENDING;
                 }
