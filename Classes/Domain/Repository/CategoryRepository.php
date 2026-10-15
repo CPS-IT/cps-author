@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -11,28 +12,30 @@ declare(strict_types=1);
 
 namespace Cpsit\CpsAuthor\Domain\Repository;
 
-
+use Cpsit\CpsAuthor\Domain\Model\Category;
 use Cpsit\CpsAuthor\Domain\Model\Dto\CategoryDemand;
 use Cpsit\CpsAuthor\Domain\Model\Dto\DemandInterface;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
-use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
+/**
+ * @extends Repository<Category>
+ */
 class CategoryRepository extends Repository
 {
     use Orderings;
 
     /**
      * @param DemandInterface $demand
-     * @return QueryResultInterface
+     * @return QueryResultInterface<int, Category>
      * @throws InvalidQueryException
      */
     public function findDemanded(DemandInterface $demand): QueryResultInterface
     {
-        /** @var Query $query */
+        /** @var Query<Category> $query */
         $query = $this->createQuery();
 
         if ($demand instanceof CategoryDemand) {
@@ -44,11 +47,10 @@ class CategoryRepository extends Repository
     }
 
     /**
-     * @param QueryInterface $query
-     * @param CategoryDemand $demand
+     * @param QueryInterface<Category> $query
      * @throws InvalidQueryException
      */
-    protected function applyConstraints(QueryInterface $query, DemandInterface $demand): void
+    protected function applyConstraints(QueryInterface $query, CategoryDemand $demand): void
     {
         $constraints = [];
 

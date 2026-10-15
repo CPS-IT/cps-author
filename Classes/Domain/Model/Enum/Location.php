@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of thecps_author project.
@@ -20,23 +21,23 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 final class Location extends \TYPO3\CMS\Core\Type\Enumeration
 {
     /** @var int not location */
-    const __default = 0;
-    const BADEN_WUERTTEMBERG = 1;
-    const BAYERN = 2;
-    const BERLIN = 3;
-    const BRANDENBURG = 4;
-    const BREMEN = 5;
-    const HAMBURG = 6;
-    const HESSEN = 7;
-    const MECKLENBURG_VORPOMMERN = 8;
-    const NIEDERSACHSEN = 9;
-    const NORDRHEIN_WESTFALEN = 10;
-    const RHEINLAND_PFALZ = 11;
-    const SAARLAND = 12;
-    const SACHSEN = 13;
-    const SACHSEN_ANHALT = 14;
-    const SCHLESWIG_HOLSTEIN = 15;
-    const THUERINGEN = 16;
+    public const __default = 0;
+    public const BADEN_WUERTTEMBERG = 1;
+    public const BAYERN = 2;
+    public const BERLIN = 3;
+    public const BRANDENBURG = 4;
+    public const BREMEN = 5;
+    public const HAMBURG = 6;
+    public const HESSEN = 7;
+    public const MECKLENBURG_VORPOMMERN = 8;
+    public const NIEDERSACHSEN = 9;
+    public const NORDRHEIN_WESTFALEN = 10;
+    public const RHEINLAND_PFALZ = 11;
+    public const SAARLAND = 12;
+    public const SACHSEN = 13;
+    public const SACHSEN_ANHALT = 14;
+    public const SCHLESWIG_HOLSTEIN = 15;
+    public const THUERINGEN = 16;
 
     /**
      * Local lang key name
@@ -53,6 +54,9 @@ final class Location extends \TYPO3\CMS\Core\Type\Enumeration
         return (int)$this->value;
     }
 
+    /**
+     * @return list<array{const: string, uid: int, label: string|null}>
+     */
     public function getLocalizedConstants(bool $includeDefault = false): array
     {
         $localizedConstants = [];

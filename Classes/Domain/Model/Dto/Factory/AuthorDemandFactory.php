@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /*
  * This file is part of the cps_author project.
@@ -10,22 +11,23 @@ declare(strict_types=1);
 
 namespace Cpsit\CpsAuthor\Domain\Model\Dto\Factory;
 
-use Cpsit\CpsUtility\Utility\PageUtility;
 use Cpsit\CpsAuthor\Domain\Model\Dto\AuthorDemand;
-use Cpsit\CpsAuthor\Domain\Model\Dto\DemandInterface;
+use Cpsit\CpsUtility\Utility\PageUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class AuthorDemandFactory
 {
-    protected DemandInterface $demand;
-    protected array $settings = [];
+    protected AuthorDemand $demand;
 
     public function __construct()
     {
         $this->demand = GeneralUtility::makeInstance(AuthorDemand::class);
     }
 
-    public function create(array $settings = []): DemandInterface
+    /**
+     * @param array<string, mixed> $settings
+     */
+    public function create(array $settings = []): AuthorDemand
     {
         if (empty($settings)) {
             return $this->demand;
@@ -38,7 +40,7 @@ class AuthorDemandFactory
         }
 
         if (!empty($settings['listSelectedAuthors'])) {
-            $this->demand->setAuthorIds(GeneralUtility::intExplode(',', $settings['listSelectedQuestions']));
+            $this->demand->setAuthorIds(GeneralUtility::intExplode(',', $settings['listSelectedAuthors']));
         }
 
         if (!empty($settings['sorting'])) {
@@ -57,13 +59,14 @@ class AuthorDemandFactory
     /**
      * Get records storage pages array
      *
-     * @return array|int[]
+     * @param array<string, mixed> $settings
+     * @return int[]
      */
-    protected function resolveStoragePage($settings): array
+    protected function resolveStoragePage(array $settings): array
     {
         /** @var PageUtility $pageUtility */
         $pageUtility = GeneralUtility::makeInstance(PageUtility::class);
-        $recursive = (int)$settings['recursive'] ?? 0;
+        $recursive = (int)($settings['recursive'] ?? 0);
         return $pageUtility->resolveStoragePages($settings['listPid'], $recursive);
     }
 }

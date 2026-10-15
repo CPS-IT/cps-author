@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of thecps_author project.
  *
@@ -29,10 +30,9 @@ class AuthorSlugModifier
     /**
      * Modify slug for authors depending on type
      *
-     * @param $arguments
-     * @return string
+     * @param array<string, mixed> $arguments
      */
-    public function modifySlugByAuthorType($arguments): string
+    public function modifySlugByAuthorType(array $arguments): string
     {
         $configuration = $arguments['configuration'];
         $record = $arguments['record'];
@@ -44,7 +44,7 @@ class AuthorSlugModifier
 
         // Remove current modifier from configuration
         foreach ($configuration['generatorOptions']['postModifiers'] as $key => $postModifier) {
-            if (strpos($postModifier, __FUNCTION__) !== false) {
+            if (str_contains($postModifier, __FUNCTION__)) {
                 unset($configuration['generatorOptions']['postModifiers'][$key]);
             }
         }
@@ -59,7 +59,8 @@ class AuthorSlugModifier
         }
 
         /** @var SlugHelper $slugHelper */
-        $slugHelper = GeneralUtility::makeInstance(SlugHelper::class,
+        $slugHelper = GeneralUtility::makeInstance(
+            SlugHelper::class,
             Author::TABLE_NAME,
             Author::FIELD_SLUG,
             $configuration,
@@ -68,10 +69,9 @@ class AuthorSlugModifier
         return $slugHelper->generate($record, $arguments['pid']);
     }
 
-
     /**
-     * @param array $record
-     * @param array $configuration
+     * @param array<string, mixed> $record
+     * @param array<string, mixed> $configuration
      */
     protected function setAuthorFieldsConfiguration(array $record, array &$configuration): void
     {
@@ -80,6 +80,10 @@ class AuthorSlugModifier
         }
     }
 
+    /**
+     * @param array<string, mixed> $record
+     * @param array<string, mixed> $configuration
+     */
     protected function setNetworkPartnerFieldsConfiguration(array $record, array &$configuration): void
     {
         if ($this->checkGeneratorOptionsFields($record, $configuration, 'networkPartnerFields')) {
@@ -90,10 +94,8 @@ class AuthorSlugModifier
     /**
      * Return false if check fails
      *
-     * @param array $record
-     * @param array $configuration
-     * @param string $fieldsConfKey
-     * @return bool
+     * @param array<string, mixed> $record
+     * @param array<string, mixed> $configuration
      */
     protected function checkGeneratorOptionsFields(array $record, array $configuration, string $fieldsConfKey): bool
     {

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\CpsAuthor\Configuration;
@@ -18,7 +19,6 @@ interface SettingsInterface
 {
     public const NAME = 'CpsAuthor';
     public const KEY = 'cps_author';
-    public const VENDOR_NAME = 'Cpsit';
 
     public const FE_CACHE_TAG_AUTHOR = 'Author';
 

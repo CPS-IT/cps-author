@@ -10,14 +10,14 @@ namespace Cpsit\CpsAuthor\Domain\Repository;
  * of the License, or any later version.
  */
 
-use Doctrine\DBAL\Query\QueryBuilder;
-use Cpsit\CpsAuthor\Domain\Model\Dto\DemandInterface;
-use Cpsit\CpsAuthor\Domain\Model\Dto\AuthorDemand;
 use Cpsit\CpsAuthor\Domain\Model\Author;
+use Cpsit\CpsAuthor\Domain\Model\Dto\AuthorDemand;
+use Cpsit\CpsAuthor\Domain\Model\Dto\DemandInterface;
+use Doctrine\DBAL\ArrayParameterType;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper;
 use TYPO3\CMS\Extbase\Persistence\Generic\Query;
@@ -26,6 +26,9 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
+/**
+ * @extends Repository<Author>
+ */
 class AuthorRepository extends Repository
 {
     use Orderings;
@@ -37,27 +40,28 @@ class AuthorRepository extends Repository
      */
     protected $dataMapper;
 
-    /**
-     * @param DataMapper $dataMapper
-     */
-    public function __construct(DataMapper $dataMapper)
-    {
+    protected $defaultOrderings = [
+        Author::FIELD_SORTING => QueryInterface::ORDER_DESCENDING,
+    ];
+
+    public function __construct(
+        DataMapper $dataMapper,
+        private readonly ConnectionPool $connectionPool,
+        private readonly Context $context,
+        private readonly ConfigurationManagerInterface $configurationManager,
+    ) {
         parent::__construct();
         $this->dataMapper = $dataMapper;
     }
 
-    protected $defaultOrderings = [
-        Author::FIELD_SORTING => QueryInterface::ORDER_DESCENDING
-    ];
-
     /**
      * @param DemandInterface $demand
-     * @return QueryResultInterface
+     * @return QueryResultInterface<int, Author>
      * @throws InvalidQueryException
      */
     public function findDemanded(DemandInterface $demand): QueryResultInterface
     {
-        /** @var Query $query */
+        /** @var Query<Author> $query */
         $query = $this->createQuery();
 
         if ($demand instanceof AuthorDemand) {
@@ -69,20 +73,15 @@ class AuthorRepository extends Repository
     }
 
     /**
-     * @param QueryInterface $query
-     * @param AuthorDemand $demand
+     * @param QueryInterface<Author> $query
      * @throws InvalidQueryException
      */
-    protected function applyConstraints(QueryInterface $query, DemandInterface $demand): void
+    protected function applyConstraints(QueryInterface $query, AuthorDemand $demand): void
     {
         $constraints = [];
 
         if (!empty($pages = $demand->getPageIds())) {
-            $context = GeneralUtility::makeInstance(Context::class);
-            $configurationManager = GeneralUtility::getContainer()->get(ConfigurationManager::class);
-
-            //@todo check if GeneralUtility::makeInstance solves injection problem
-            $querySettings = new Typo3QuerySettings($context, $configurationManager);
+            $querySettings = new Typo3QuerySettings($this->context, $this->configurationManager);
             $querySettings->setRespectStoragePage(true)
                 ->setStoragePageIds($pages);
             $query->setQuerySettings($querySettings);
@@ -107,7 +106,7 @@ class AuthorRepository extends Repository
      * Returns all matching records for the given list of uids and applies the uidList sorting for the result
      *
      * @param int[] $uidList
-     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return Author[]
      * @throws \Doctrine\DBAL\Driver\Exception
      * @throws \Doctrine\DBAL\Exception
      */
@@ -118,22 +117,28 @@ class AuthorRepository extends Repository
         }
 
         /** @var QueryBuilder $queryBuilder */
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+        $queryBuilder = $this->connectionPool
             ->getQueryBuilderForTable(Author::TABLE_NAME);
 
         $rows = $queryBuilder
             ->select('*')
             ->from(Author::TABLE_NAME)
-            ->where($queryBuilder->expr()->in(Author::FIELD_UID, $uidList))
+            ->where($queryBuilder->expr()->in(Author::FIELD_UID, $queryBuilder->createNamedParameter($uidList, ArrayParameterType::INTEGER)))
             ->executeQuery()
             ->fetchAllAssociative();
 
-        $position = array_flip(array_map('intval', $uidList));
-        usort(
-            $rows,
-            static fn (array $a, array $b): int => $position[(int)$a[Author::FIELD_UID]] <=> $position[(int)$b[Author::FIELD_UID]]
-        );
+        $rowsByUid = [];
+        foreach ($rows as $row) {
+            $rowsByUid[(int)$row[Author::FIELD_UID]] = $row;
+        }
 
-        return $this->dataMapper->map(Author::class, $rows);
+        $sortedRows = [];
+        foreach (array_unique(array_map('intval', $uidList)) as $uid) {
+            if (isset($rowsByUid[$uid])) {
+                $sortedRows[] = $rowsByUid[$uid];
+            }
+        }
+
+        return $this->dataMapper->map(Author::class, $sortedRows);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -21,14 +22,13 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 final class InstitutionType extends \TYPO3\CMS\Core\Type\Enumeration
 {
     /** @var int no type */
-
-    const __default = 0;
-    const ENERGY_AGENCIES = 1;
-    const SCIENCE_INSTITUTES_UNIVERSITIES = 2;
-    const TRAINING_INSTITUTIONS = 3;
-    const PUBLIC_INSTITUTIONS = 4;
-    const ASSOCIATIONS_CLUBS_CHAMBERS = 5;
-    const OTHER = 6;
+    public const __default = 0;
+    public const ENERGY_AGENCIES = 1;
+    public const SCIENCE_INSTITUTES_UNIVERSITIES = 2;
+    public const TRAINING_INSTITUTIONS = 3;
+    public const PUBLIC_INSTITUTIONS = 4;
+    public const ASSOCIATIONS_CLUBS_CHAMBERS = 5;
+    public const OTHER = 6;
 
     /**
      * Local lang key name
@@ -45,6 +45,9 @@ final class InstitutionType extends \TYPO3\CMS\Core\Type\Enumeration
         return (int)$this->value;
     }
 
+    /**
+     * @return list<array{const: string, uid: int, label: string|null}>
+     */
     public function getLocalizedConstants(bool $includeDefault = false): array
     {
         $localizedConstants = [];

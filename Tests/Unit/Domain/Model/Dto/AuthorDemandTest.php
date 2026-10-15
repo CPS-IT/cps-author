@@ -14,7 +14,6 @@ use PHPUnit\Framework\TestCase;
 
 class AuthorDemandTest extends TestCase
 {
-
     /**
      * @var AuthorDemand
      */
@@ -36,7 +35,7 @@ class AuthorDemandTest extends TestCase
 
     public function testPagIdsCanBeSet(): void
     {
-        $pages = [1,2];
+        $pages = [1, 2];
         $this->subject->setPageIds($pages);
 
         self::assertSame(
