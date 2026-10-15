@@ -1,0 +1,13 @@
+tt_content
+,uid,pid,CType,list_type,header
+,1,1,list,cpsauthor_app,app
+,2,1,list,cpsauthor_show,show
+,3,1,list,cpsauthor_list,list
+,4,1,list,cpsauthor_filter,filter
+,5,1,list,other_plugin,other
+,6,1,cpsauthor_app,,already migrated
+,7,1,text,,text
+be_groups
+,uid,pid,title,explicit_allowdeny
+,1,0,old permission,"tt_content:CType:text,tt_content:list_type:cpsauthor_app,tt_content:list_type:other_plugin"
+,2,0,new permission,"tt_content:CType:cpsauthor_show"
