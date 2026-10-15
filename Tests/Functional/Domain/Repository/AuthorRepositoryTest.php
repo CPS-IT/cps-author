@@ -14,6 +14,9 @@ namespace Cpsit\CpsAuthor\Tests\Functional\Domain\Repository;
 
 use Cpsit\CpsAuthor\Domain\Model\Dto\AuthorDemand;
 use Cpsit\CpsAuthor\Domain\Repository\AuthorRepository;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class AuthorRepositoryTest extends FunctionalTestCase
@@ -43,5 +46,31 @@ class AuthorRepositoryTest extends FunctionalTestCase
         $demand->setPageIds([1, 3]);
 
         self::assertCount(2, $this->subject->findDemanded($demand));
+    }
+
+    public function testFindByUidListKeepsTheOrderOfTheUidList(): void
+    {
+        $authors = $this->subject->findByUidList([2, 1]);
+
+        self::assertSame([2, 1], array_map(static fn($author): int => $author->getUid(), $authors));
+    }
+
+    public function testFindByUidListSkipsUnknownAndDuplicateUids(): void
+    {
+        $authors = $this->subject->findByUidList([2, 9999, 1, 2]);
+
+        self::assertSame([2, 1], array_map(static fn($author): int => $author->getUid(), $authors));
+    }
+
+    public function testConstructorReceivesConnectionPoolContextAndConfigurationManager(): void
+    {
+        $parameterTypes = [];
+        foreach ((new \ReflectionMethod(AuthorRepository::class, '__construct'))->getParameters() as $parameter) {
+            $parameterTypes[] = (string)$parameter->getType();
+        }
+
+        self::assertContains(ConnectionPool::class, $parameterTypes);
+        self::assertContains(Context::class, $parameterTypes);
+        self::assertContains(ConfigurationManagerInterface::class, $parameterTypes);
     }
 }

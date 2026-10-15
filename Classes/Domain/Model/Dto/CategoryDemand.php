@@ -110,7 +110,7 @@ class CategoryDemand implements DemandInterface
     }
 
     /**
-     * @return array
+     * @return int[]
      */
     public function getExcludedCategoryIds(): array
     {
@@ -118,7 +118,7 @@ class CategoryDemand implements DemandInterface
     }
 
     /**
-     * @param array $excludedCategoryIds
+     * @param int[] $excludedCategoryIds
      */
     public function setExcludedCategoryIds(array $excludedCategoryIds): void
     {

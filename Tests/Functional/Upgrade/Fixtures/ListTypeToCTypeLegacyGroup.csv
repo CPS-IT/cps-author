@@ -1,0 +1,7 @@
+tt_content
+,uid,pid,CType,list_type,header
+,1,1,list,cpsauthor_app,app
+be_groups
+,uid,pid,title,explicit_allowdeny
+,1,0,legacy format,"tt_content:list_type:cpsauthor_app:ALLOW"
+,2,0,old permission,"tt_content:list_type:cpsauthor_show"

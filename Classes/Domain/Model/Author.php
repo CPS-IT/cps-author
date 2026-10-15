@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Cpsit\CpsAuthor\Domain\Model;
@@ -11,13 +12,12 @@ namespace Cpsit\CpsAuthor\Domain\Model;
  * of the License, or any later version.
  */
 
-use Cpsit\CpsAuthor\Domain\Model\Category;
 use Cpsit\CpsAuthor\Domain\Model\Enum\Location;
+use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\DomainObject\AbstractDomainObject;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
-use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 
 class Author extends AbstractDomainObject
 {
@@ -56,8 +56,10 @@ class Author extends AbstractDomainObject
     protected string $instagram = '';
     protected bool $noProfile = false;
 
-
     //business logic values
+    /**
+     * @var array<string, string>
+     */
     protected array $socialMediaLinkArray = []; //must be initialized
 
     /**
@@ -82,7 +84,6 @@ class Author extends AbstractDomainObject
      */
     #[Lazy]
     protected $contentElements;
-
 
     public function __construct()
     {
@@ -436,7 +437,7 @@ class Author extends AbstractDomainObject
     }
 
     /**
-     * @return null|ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+     * @return ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>|null
      */
     public function getImages(): ?ObjectStorage
     {
@@ -444,7 +445,7 @@ class Author extends AbstractDomainObject
     }
 
     /**
-     * @param ObjectStorage $images
+     * @param ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $images
      */
     public function setImages(ObjectStorage $images): void
     {
@@ -489,41 +490,47 @@ class Author extends AbstractDomainObject
         if (!is_null($images)) {
             $images->rewind();
             return $images->current();
-        } else {
-            return null;
         }
+        return null;
+
     }
 
     /**
      * Returns an array of social media urls,
      * filtered by network partner and empty value, both then not shown.
+     *
+     * @return array<string, string>
      */
     public function getSocialMediaLinkArray(): array
     {
-        $this->socialMediaLinkArray =
-            array_filter(
+        $this->socialMediaLinkArray
+            = array_filter(
                 [
-                    "extern" => $this->getWww(),
-                    "email" => $this->getEmail(),
-                    "linkedin" => $this->getLinkedin(),
-                    "twitter" => $this->getTwitter(),
-                    "facebook" => $this->getFacebook(),
-                    "skype" => $this->getSkype(),
-                    "instagram" => $this->getInstagram()
+                    'extern' => $this->getWww(),
+                    'email' => $this->getEmail(),
+                    'linkedin' => $this->getLinkedin(),
+                    'twitter' => $this->getTwitter(),
+                    'facebook' => $this->getFacebook(),
+                    'skype' => $this->getSkype(),
+                    'instagram' => $this->getInstagram(),
                 ],
-                static function ($b) {
-                    return $b;
-                } //filtering by value is set or not
+                static fn(string $value): bool => (bool)$value // filtering by value is set or not
             );
 
         return $this->socialMediaLinkArray;
     }
 
+    /**
+     * @return ObjectStorage<Category>|null
+     */
     public function getCategories(): ?ObjectStorage
     {
         return $this->categories;
     }
 
+    /**
+     * @param ObjectStorage<Category> $categories
+     */
     public function setCategories(ObjectStorage $categories): void
     {
         $this->categories = $categories;
@@ -545,9 +552,9 @@ class Author extends AbstractDomainObject
         if (!is_null($categories)) {
             $categories->rewind();
             return $categories->current();
-        } else {
-            return null;
         }
+        return null;
+
     }
 
     /**
@@ -595,7 +602,7 @@ class Author extends AbstractDomainObject
     /**
      * Get content elements
      *
-     * @return ObjectStorage
+     * @return ObjectStorage<TtContent>
      */
     public function getContentElements(): ObjectStorage
     {
@@ -605,9 +612,9 @@ class Author extends AbstractDomainObject
     /**
      * Set content element list
      *
-     * @param ObjectStorage $contentElements content elements
+     * @param ObjectStorage<TtContent> $contentElements content elements
      */
-    public function setContentElements($contentElements): void
+    public function setContentElements(ObjectStorage $contentElements): void
     {
         $this->contentElements = $contentElements;
     }
