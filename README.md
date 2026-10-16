@@ -29,6 +29,9 @@ The plugins are registered as content types (`CType`):
 | `cpsauthor_list`   | List of authors               | yes        |
 | `cpsauthor_filter` | Filter placeholder, use app   | no         |
 
+`cpsauthor_filter` stays registered so that migrated records keep a valid
+type. It is hidden from the New Content Element wizard.
+
 ### Upgrade from `list_type` plugins
 
 Records created before 4.0.0 use `CType = list` with a `list_type`. Run the

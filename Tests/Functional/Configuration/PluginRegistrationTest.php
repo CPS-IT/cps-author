@@ -56,9 +56,22 @@ class PluginRegistrationTest extends FunctionalTestCase
         self::assertNotEmpty($item['description']);
     }
 
-    public function testFilterPluginIsNotSelectable(): void
+    public function testFilterContentTypeIsRegisteredForMigratedRows(): void
     {
-        self::assertNull($this->findCTypeItem('cpsauthor_filter'));
+        $item = $this->findCTypeItem('cpsauthor_filter');
+
+        self::assertNotNull($item);
+        self::assertSame('plugins', $item['group']);
+    }
+
+    public function testFilterContentTypeIsRemovedFromNewContentElementWizard(): void
+    {
+        $pageTsConfig = file_get_contents(dirname(__DIR__, 3) . '/Configuration/page.tsconfig');
+
+        self::assertStringContainsString(
+            'wizardItems.plugins.removeItems := addToList(cpsauthor_filter)',
+            (string)$pageTsConfig
+        );
     }
 
     #[DataProvider('configuredPluginProvider')]
@@ -125,7 +138,7 @@ class PluginRegistrationTest extends FunctionalTestCase
             $ids[] = (string)$unit['id'];
         }
 
-        foreach (['app', 'show', 'list'] as $plugin) {
+        foreach (['app', 'show', 'list', 'filter'] as $plugin) {
             self::assertContains('plugin.author.' . $plugin . '.title', $ids, $fileName);
             self::assertContains('plugin.author.' . $plugin . '.description', $ids, $fileName);
         }
