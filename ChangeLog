@@ -1,3 +1,6 @@
+2026-10-16         [RELEASE] Release of cps-author 4.0.1 (Vladimir Falcón Piva)
+2026-10-16 8795b2c [BUGFIX] Keep cpsauthor_filter a valid CType for migrated records (#82464) (Vladimir Falcón Piva)
+
 2026-10-15         [RELEASE] Release of cps-author 4.0.0 (Vladimir Falcón Piva)
 2026-10-15 31482e5 [TASK] Run package tests with DDEV on PHP 8.4 (#82464) (Vladimir Falcón Piva)
 2026-10-15 47cbbb4 [TASK] Add code quality tooling and fix EditorConfig and TypoScript findings (#82464) (Vladimir Falcón Piva)
