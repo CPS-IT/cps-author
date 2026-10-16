@@ -30,6 +30,9 @@
 			<trans-unit id="plugin.author.filter.title">
 				<source>Author filter form</source>
 			</trans-unit>
+			<trans-unit id="plugin.author.filter.description">
+				<source>Displays a form to filter the list of Author records.</source>
+			</trans-unit>
 			<trans-unit id="tab.configuration">
 				<source>Configuration</source>
 			</trans-unit>

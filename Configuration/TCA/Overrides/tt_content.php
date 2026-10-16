@@ -8,13 +8,15 @@ use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 $languageFile = 'LLL:EXT:cps_author/Resources/Private/Language/locallang_be.xlf:';
 
-$selectablePlugins = [
+$plugins = [
     'App' => 'AuthorAppPlugin.xml',
     'Show' => null,
     'List' => 'AuthorListPlugin.xml',
+    // Registered so migrated rows keep a valid CType; removed from the wizard in page.tsconfig
+    'Filter' => null,
 ];
 
-foreach ($selectablePlugins as $pluginName => $flexForm) {
+foreach ($plugins as $pluginName => $flexForm) {
     $key = strtolower($pluginName);
     $signature = ExtensionUtility::registerPlugin(
         SI::KEY,
